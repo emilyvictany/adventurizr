@@ -1,6 +1,7 @@
 volumes:
   adventurizr:
     external: true
+
 services:
   fastapi:
     environment:
@@ -19,8 +20,8 @@ services:
     volumes:
         - adventurizr:/var/lib/postgresql/data
     environment:
-        POSTGRES_PASSWORD: adventurizr
         POSTGRES_USER: adventurizr_user
+        POSTGRES_PASSWORD: adventurizr
         POSTGRES_DB: adventurizr_db
     ports:
         - 15432:5432
