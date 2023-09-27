@@ -6,7 +6,7 @@ services:
   fastapi:
     environment:
       CORS_HOST: http://localhost:3000
-      DATABASE_URL: postgresql://adventurizr_user:adventurizr@database/adventurizr_db
+      DATABASE_URL: postgresql://adventurizr_user:adventurizr@database:5432/adventurizr_db
     build:
       context: api
       dockerfile: Dockerfile.dev
