@@ -13,3 +13,15 @@ Keep your journal in reverse chronological order. Always put new entries at the 
 ## September 26, 2023
 
 Today, I worked on:
+
+* Setting up the Adventurizr PostgreSQL Database with Emily.
+
+Emily and I set up our project database following the instructions on learn. We added a volume for the PostgreSQL RDMS, psycopg to ./api/requirements.txt, PostgreSQL to the services section, a DATABASE_URL to the fastapi service to our docker-compose.yaml file. We ran the command docker volume create adventurizr to create our projects volume and then ran docker-compose up to create our updated containers.
+
+Setting up our PostgreSQL helped me understand configuration a bit more in specific how the FastAPI service connects to the PostgreSQL database.
+
+## September 27, 2023
+
+Today, I worked on:
+
+* Creating issue tickets on the issues board and approving merge requests
