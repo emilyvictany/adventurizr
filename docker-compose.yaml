@@ -7,6 +7,11 @@ services:
     environment:
       CORS_HOST: http://localhost:3000
       DATABASE_URL: postgresql://adventurizr_user:adventurizr@database/adventurizr_db
+      SIGNING_KEY: b9fb50cd67d3228d127575b4e5d380347955046afe9cb94bd3918cf3be55c800
+      WAIT HOST$: db:5432
+      PORT: 8000
+      WAIT BEFORE: 5
+      WAIT_TIMEOUT: 60
     build:
       context: api
       dockerfile: Dockerfile.dev
