@@ -1,3 +1,4 @@
+
 from fastapi import (
     Depends,
     HTTPException,
@@ -73,3 +74,12 @@ async def create_user(
     form = AccountForm(username=user.email, password=user.password)
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=new_user, **token.dict())
+
+
+@router.delete("/api/users/{user_id}", response_model=bool)
+def delete_user(
+    user_id: int,
+    repo: UserQueries=Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+)-> bool:
+    return repo.delete(user_id)
