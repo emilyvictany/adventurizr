@@ -25,3 +25,9 @@ Setting up our PostgreSQL helped me understand configuration a bit more in speci
 Today, I worked on:
 
 * Creating issue tickets on the issues board and approving merge requests
+
+## September 28, 2023
+
+Today, I worked on:
+
+* Implementing the backend Authorization for the login, logout, sign-up endpoints using the JWTdown API library.
