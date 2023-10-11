@@ -82,42 +82,35 @@ async def create_user(
 @router.delete("/api/users/{user_id}", response_model=bool)
 def delete_user(
     user_id: int,
-    repo: UserQueries=Depends(),
+    repo: UserQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 )-> bool:
     return repo.delete(user_id)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@router.get("/api/users/{user_id}", response_model=Optional[UserOut])
+def get_one(
+    user_id: int,
+    response: Response,
+    account: UserQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+)->UserOut:
+    user = account.get_one(user_id)
+    if user is None:
+        response.status_code = 404
+    return user
 
 
 @router.put("/api/users/{user_id}", response_model=Union[UserOutWithPassword, Error])
 def update_user(
-    user_id:int,
-    info:UserIn,
+    user_id: int,
+    info: UserIn,
     response: Response,
-    repo: UserQueries=Depends(),
+    repo: UserQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 
 )-> UserOutWithPassword:
     user_id = account_data["id"]
-    response.status_code=200
+    response.status_code = 200
     hashed_password = authenticator.hash_password(info.password)
     return repo.update(user_id, info, hashed_password)
