@@ -6,8 +6,9 @@ from fastapi import (
     Response,
     APIRouter,
     Request,
+
 )
-from jwtdown_fastapi.authentication import Token
+from jwtdown_fastapi.authentication import Token, Optional
 from authenticator import authenticator
 
 from pydantic import BaseModel
@@ -83,3 +84,20 @@ def delete_user(
     account_data: dict = Depends(authenticator.get_current_account_data),
 )-> bool:
     return repo.delete(user_id)
+
+
+
+
+
+
+@router.get("/api/users/{user_id}", response_model=Optional[UserOut])
+def get_one(
+    user_id: int,
+    response: Response,
+    account: UserQueries=Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+)->UserOut:
+    user=account.get_one(user_id)
+    if user is None:
+        response.status_code=404
+    return user

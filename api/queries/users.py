@@ -2,7 +2,7 @@
 import os
 from psycopg_pool import ConnectionPool
 from pydantic import BaseModel
-from typing import List, Union
+from typing import List, Union, Optional
 
 pool = ConnectionPool(conninfo=os.environ.get("DATABASE_URL"))
 
@@ -103,3 +103,32 @@ class UserQueries:
         except Exception as e:
             print(e)
             return False
+
+    def get_one(self, user_id:int)->Optional[UserOut]:
+            try:
+                with pool.connection() as conn:
+                    with conn.cursor() as db:
+                        result=db.execute(
+                            """
+                            SELECT id,
+                                email,
+                                first_name,
+                                last_name
+                            FROM users
+                            WHERE id=%s
+                            """,
+                            [user_id]
+                        )
+                        record=result.fetchone()
+                        return self.record_to_user_out(record)
+            except Exception as e:
+                return {"message": "could not get user"}
+
+    def record_to_user_out(self, record):
+        return UserOut(
+            id=record[0],
+            email=record[1],
+            first_name=record[2],
+            last_name=record[3],
+
+        )
