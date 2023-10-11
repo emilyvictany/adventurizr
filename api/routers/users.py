@@ -79,7 +79,7 @@ async def create_user(
 @router.delete("/api/users/{user_id}", response_model=bool)
 def delete_user(
     user_id: int,
-    repo: UserQueries=Depends(),
+    repo: UserQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 )-> bool:
     return repo.delete(user_id)

@@ -31,3 +31,15 @@ Today, I worked on:
 Today, I worked on:
 
 * Implementing the backend Authorization for the login, logout, sign-up endpoints using the JWTdown API library.
+
+## October 9, 2023
+
+Today I worked on:
+
+* Setting up the activities SQL data table
+
+## October 10, 2023
+
+Today I worked on:
+
+* 
