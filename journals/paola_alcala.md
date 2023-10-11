@@ -42,4 +42,4 @@ Today I worked on:
 
 Today I worked on:
 
-* 
+*

@@ -11,6 +11,10 @@ class DuplicateAccountError(ValueError):
     pass
 
 
+class Error(BaseModel):
+    message: str
+
+
 class UserIn(BaseModel):
     first_name: str
     last_name: str
@@ -19,7 +23,7 @@ class UserIn(BaseModel):
 
 
 class UserOut(BaseModel):
-    id: str
+    id: int
     email: str
     first_name: str
     last_name: str
@@ -87,8 +91,7 @@ class UserQueries:
                     hashed_password=account[4],
                 )
 
-
-    def delete(self, user_id:int)->bool:
+    def delete(self, user_id: int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -104,25 +107,25 @@ class UserQueries:
             print(e)
             return False
 
-    def get_one(self, user_id:int)->Optional[UserOut]:
-            try:
-                with pool.connection() as conn:
-                    with conn.cursor() as db:
-                        result=db.execute(
-                            """
-                            SELECT id,
-                                email,
-                                first_name,
-                                last_name
-                            FROM users
-                            WHERE id=%s
-                            """,
-                            [user_id]
-                        )
-                        record=result.fetchone()
-                        return self.record_to_user_out(record)
-            except Exception as e:
-                return {"message": "could not get user"}
+    def get_one(self, user_id: int) -> Optional[UserOut]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id,
+                            email,
+                            first_name,
+                            last_name
+                        FROM users
+                        WHERE id=%s
+                        """,
+                        [user_id]
+                    )
+                    record = result.fetchone()
+                    return self.record_to_user_out(record)
+        except Exception:
+            return {"message": "could not get user"}
 
     def record_to_user_out(self, record):
         return UserOut(
@@ -130,5 +133,36 @@ class UserQueries:
             email=record[1],
             first_name=record[2],
             last_name=record[3],
-
         )
+
+    def update(self, user_id: int, info: UserIn, hashed_password: str) -> Union[UserOutWithPassword, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        UPDATE users
+                        SET first_name=%s,
+                            last_name=%s,
+                            email=%s,
+                            hashed_password=%s
+                        WHERE id= %s
+
+                        """,
+                        [
+                            info.first_name,
+                            info.last_name,
+                            info.email,
+                            hashed_password,
+                            user_id
+                        ]
+                    )
+
+                    return self.user_in_to_out(user_id, info, hashed_password)
+
+        except Exception as e:
+            return {"message": f'could not update {e}'}
+
+    def user_in_to_out(self, id: int, info: UserIn, hashed_password: str):
+        old_data = info.dict()
+        return UserOutWithPassword(id=id, **old_data, hashed_password=hashed_password)

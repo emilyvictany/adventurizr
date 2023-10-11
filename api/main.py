@@ -4,6 +4,7 @@ import os
 from authenticator import authenticator
 from routers import users, activities, favorites
 
+
 app = FastAPI()
 app.include_router(authenticator.router)
 app.include_router(users.router)
@@ -19,7 +20,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 
 @app.get("/api/launch-details")
