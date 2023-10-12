@@ -139,3 +139,19 @@ class ActivityRepository:
             published=record[5],
             user_id=record[6],
         )
+
+    def delete(self, activity_id: int) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM activities
+                        WHERE id = %s
+                        """,
+                        [activity_id]
+                    )
+                    return True
+        except Exception as e:
+            print(e)
+            return False
