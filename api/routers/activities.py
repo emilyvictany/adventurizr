@@ -9,7 +9,8 @@ from fastapi import (
 from typing import Union, List
 from queries.activities import (
     ActivityIn, ActivityRepository,
-    ActivityOut, Error
+    ActivityOut, Error,
+    FilterIn, FilterOut
 )
 from jwtdown_fastapi.authentication import Token, Optional
 from authenticator import authenticator
@@ -43,6 +44,25 @@ def get_all(
     except Exception as e:
         print(e)
         raise {"message": "Could not get all activities"}
+
+
+@router.get("/activities/filtered", response_model=Union[Error, List[FilterOut]])
+def get_filtered(
+    filter_params: FilterIn = Depends(),
+    repo: ActivityRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    participants = filter_params.participants
+    environment = filter_params.environment
+    category = filter_params.category
+    try:
+        filtered_activities = repo.filtered(participants, environment, category)
+    except Exception as e:
+        print(e)
+    if not filtered_activities:
+        raise HTTPException(status_code=404, detail="No matching activities found")
+
+    return filtered_activities
 
 
 @router.get("/activities/{activity_id}", response_model=Optional[ActivityOut])

@@ -26,6 +26,17 @@ class ActivityOut(BaseModel):
     user_id: Optional[int]
 
 
+class FilterIn(BaseModel):
+    participants: str
+    environment: str
+    category: str
+
+
+class FilterOut(BaseModel):
+    id: int
+    title: str
+
+
 class ActivityRepository:
     def create_activity(self, activity: ActivityIn, user_id: int) -> ActivityOut:
         with pool.connection() as conn:
@@ -41,13 +52,60 @@ class ActivityRepository:
                     """,
                     [
                         activity.title, activity.participants,
-                        activity.category, activity.environment,
+                        activity.environment, activity.category,
                         activity.published, user_id
                     ]
                 )
                 id = result.fetchone()[0]
                 old_data = activity.dict()
                 return ActivityOut(id=id, **old_data)
+
+    def get_all(self) -> Union[Error, List[ActivityOut]]:
+        # connect the database
+        with pool.connection() as conn:
+            # get a cursor (something to run SQL with)
+            with conn.cursor() as db:
+                # run our SELECT statement
+                result = db.execute(
+                    """
+                    SELECT id, title, participants, environment, category, published, user_id
+                    FROM activities
+                    ORDER BY id;
+                    """
+                )
+                return [
+                    self.record_to_activity_out(record)
+                    for record in result
+                ]
+
+    def filtered(self, participants: str, environment: str, category: str) -> Union[Error, List[FilterOut]]:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
+                    SELECT id, title
+                    FROM activities
+                    WHERE (participants = %s)
+                        AND (environment = %s)
+                            AND (category = %s)
+                    """,
+
+                    [
+                        participants,
+                        environment,
+                        category
+                    ]
+                )
+                activities = result.fetchall()
+                filtered_activities = []
+
+                for record in activities:
+                    activity = FilterOut(
+                        id=record[0],
+                        title=record[1],
+                    )
+                    filtered_activities.append(activity)
+                return filtered_activities
 
     def get_one(self, activity_id: int) -> Optional[ActivityOut]:
         # try:
@@ -81,35 +139,3 @@ class ActivityRepository:
             published=record[5],
             user_id=record[6],
         )
-
-    def get_all(self) -> Union[Error, List[ActivityOut]]:
-        # connect the database
-        with pool.connection() as conn:
-            # get a cursor (something to run SQL with)
-            with conn.cursor() as db:
-                # run our SELECT statement
-                result = db.execute(
-                    """
-                    SELECT id, title, participants, environment, category, published, user_id
-                    FROM activities
-                    ORDER BY id;
-                    """
-                )
-                # result = []
-                # for record in db:
-                #     activity = ActivityOut(
-                #         id=record[0],
-                #         title=record[1],
-                #         participants=record[2],
-                #         environment=record[3],
-                #         category=record[4],
-                #         published=record[5],
-                #         user_id=record[6],
-                #     )
-                #     result.append(activity)
-                #     # print(record)
-                # return result
-                return [
-                    self.record_to_activity_out(record)
-                    for record in result
-                ]
