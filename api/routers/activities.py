@@ -86,3 +86,18 @@ def delete_activity(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     return repo.delete(activity_id)
+
+
+@router.put("/api/activities/{activity_id}", tags=["activities"], response_model=Union[ActivityOut, Error])
+def update(
+    activity_id: int,
+    info: ActivityOut,
+    repo: ActivityRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> ActivityOut:
+    try:
+        updated_activity = repo.update(activity_id, info)
+        return updated_activity
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=404, detail="Unable to update activity")

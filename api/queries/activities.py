@@ -61,11 +61,8 @@ class ActivityRepository:
                 return ActivityOut(id=id, **old_data)
 
     def get_all(self) -> Union[Error, List[ActivityOut]]:
-        # connect the database
         with pool.connection() as conn:
-            # get a cursor (something to run SQL with)
             with conn.cursor() as db:
-                # run our SELECT statement
                 result = db.execute(
                     """
                     SELECT id, title, participants, environment, category, published, user_id
@@ -108,11 +105,8 @@ class ActivityRepository:
                 return filtered_activities
 
     def get_one(self, activity_id: int) -> Optional[ActivityOut]:
-        # try:
         with pool.connection() as conn:
-            # get a cursor (something to run SQL with)
             with conn.cursor() as db:
-                # run our SELECT statement
                 result = db.execute(
                     """
                     SELECT id, title, participants, environment, category, published, user_id
@@ -125,9 +119,6 @@ class ActivityRepository:
                 if record is None:
                     return None
                 return self.record_to_activity_out(record)
-        # except Exception as e:
-        #     print(e)
-        #     raise {"message": "Could not get that activity"}
 
     def record_to_activity_out(self, record):
         return ActivityOut(
@@ -155,3 +146,39 @@ class ActivityRepository:
         except Exception as e:
             print(e)
             return False
+
+    def update(
+        self,
+        activity_id: int,
+        info: ActivityIn,
+    ) -> Union[ActivityOut, Error]:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    UPDATE activities
+                    SET title=%s,
+                        participants=%s,
+                        environment=%s,
+                        category=%s
+                    WHERE id = %s
+                    """,
+                    [
+                        info.title,
+                        info.participants,
+                        info.environment,
+                        info.category,
+                        activity_id
+                    ]
+                )
+
+                updated_activity = self.get_one(activity_id)
+                if updated_activity:
+                    return self.activity_in_to_out(activity_id, info)
+                else:
+                    return {"message": "Activity not found after update"}
+
+    def activity_in_to_out(self, id: int, info: ActivityIn):
+        old_data = info.dict()
+        old_data['id'] = id
+        return ActivityOut(**old_data)

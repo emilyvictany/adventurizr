@@ -84,7 +84,7 @@ def delete_user(
     user_id: int,
     repo: UserQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
-)-> bool:
+) -> bool:
     return repo.delete(user_id)
 
 
@@ -94,7 +94,7 @@ def get_one(
     response: Response,
     account: UserQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
-)->UserOut:
+) -> UserOut:
     user = account.get_one(user_id)
     if user is None:
         response.status_code = 404
@@ -109,7 +109,7 @@ def update_user(
     repo: UserQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 
-)-> UserOutWithPassword:
+) -> UserOutWithPassword:
     user_id = account_data["id"]
     response.status_code = 200
     hashed_password = authenticator.hash_password(info.password)
