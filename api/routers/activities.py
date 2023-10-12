@@ -11,7 +11,7 @@ from queries.activities import (
     ActivityIn, ActivityRepository,
     ActivityOut, Error
 )
-from jwtdown_fastapi.authentication import Token
+from jwtdown_fastapi.authentication import Token, Optional
 from authenticator import authenticator
 
 
@@ -43,3 +43,17 @@ def get_all(
     except Exception as e:
         print(e)
         raise {"message": "Could not get all activities"}
+
+
+@router.get("/activities/{activity_id}", response_model=Optional[ActivityOut])
+def get_one(
+    activity_id: int,
+    repo: ActivityRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> ActivityOut:
+    try:
+        record = repo.get_one(activity_id)
+        return record
+    except Exception as e:
+        print(e)
+        raise {"message": "Could not get that activity"}

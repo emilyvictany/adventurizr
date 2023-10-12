@@ -49,6 +49,39 @@ class ActivityRepository:
                 old_data = activity.dict()
                 return ActivityOut(id=id, **old_data)
 
+    def get_one(self, activity_id: int) -> Optional[ActivityOut]:
+        # try:
+        with pool.connection() as conn:
+            # get a cursor (something to run SQL with)
+            with conn.cursor() as db:
+                # run our SELECT statement
+                result = db.execute(
+                    """
+                    SELECT id, title, participants, environment, category, published, user_id
+                    FROM activities
+                    WHERE id=%s
+                    """,
+                    [activity_id]
+                )
+                record = result.fetchone()
+                if record is None:
+                    return None
+                return self.record_to_activity_out(record)
+        # except Exception as e:
+        #     print(e)
+        #     raise {"message": "Could not get that activity"}
+
+    def record_to_activity_out(self, record):
+        return ActivityOut(
+            id=record[0],
+            title=record[1],
+            participants=record[2],
+            environment=record[3],
+            category=record[4],
+            published=record[5],
+            user_id=record[6],
+        )
+
     def get_all(self) -> Union[Error, List[ActivityOut]]:
         # connect the database
         with pool.connection() as conn:
@@ -62,17 +95,21 @@ class ActivityRepository:
                     ORDER BY id;
                     """
                 )
-                result = []
-                for record in db:
-                    activity = ActivityOut(
-                        id=record[0],
-                        title=record[1],
-                        participants=record[2],
-                        environment=record[3],
-                        category=record[4],
-                        published=record[5],
-                        user_id=record[6],
-                    )
-                    result.append(activity)
-                    # print(record)
-                return result
+                # result = []
+                # for record in db:
+                #     activity = ActivityOut(
+                #         id=record[0],
+                #         title=record[1],
+                #         participants=record[2],
+                #         environment=record[3],
+                #         category=record[4],
+                #         published=record[5],
+                #         user_id=record[6],
+                #     )
+                #     result.append(activity)
+                #     # print(record)
+                # return result
+                return [
+                    self.record_to_activity_out(record)
+                    for record in result
+                ]
