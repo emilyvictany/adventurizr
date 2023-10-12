@@ -3,9 +3,10 @@ steps = [
         # "Up" SQL statement
         """
         CREATE TABLE favorites (
-            id SERIAL PRIMARY KEY NOT NULL,
-            user_id INTEGER REFERENCES users("id"),
-            activity_id INTEGER REFERENCES activities("id")
+            user_id INTEGER REFERENCES users(id),
+            activity_id INTEGER REFERENCES activities(id),
+            PRIMARY KEY (user_id, activity_id),
+            UNIQUE (user_id, activity_id)
         );
         """,
         # "Down" SQL statement
