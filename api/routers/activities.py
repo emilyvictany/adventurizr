@@ -65,6 +65,7 @@ def get_filtered(
     return filtered_activities
 
 
+
 @router.get("/api/activities/{activity_id}", tags=["activities"], response_model=Optional[ActivityOut])
 def get_one(
     activity_id: int,

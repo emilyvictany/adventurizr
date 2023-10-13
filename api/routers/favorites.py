@@ -38,6 +38,7 @@ def get_user_favorites(
     return repo.get_single_user_favorites(user_id)
 
 
+
 @router.delete("/api/favorites/{activity_id}", tags=["favorites"], response_model=bool)
 def delete_favorite(
     user_id: int,
@@ -46,3 +47,15 @@ def delete_favorite(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     return repo.delete(user_id, activity_id)
+
+
+@router.get("/api/favorites/", tags=["favorites"], response_model=List[ActivityOut])
+def get_all(
+    repo: FavoriteRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    try:
+        return repo.get_all_favorites()
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=404, detail="No favorites found")
