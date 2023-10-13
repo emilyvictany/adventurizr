@@ -59,7 +59,7 @@ async def get_token(
         }
 
 
-@router.post("/api/users", response_model=AccountToken | HttpError)
+@router.post("/api/users", tags=["users"], response_model=AccountToken | HttpError)
 async def create_user(
     user: UserIn,
     request: Request,
@@ -79,7 +79,7 @@ async def create_user(
     return AccountToken(account=new_user, **token.dict())
 
 
-@router.delete("/api/users/{user_id}", response_model=bool)
+@router.delete("/api/users/{user_id}", tags=["users"], response_model=bool)
 def delete_user(
     user_id: int,
     repo: UserQueries = Depends(),
@@ -88,7 +88,7 @@ def delete_user(
     return repo.delete(user_id)
 
 
-@router.get("/api/users/{user_id}", response_model=Optional[UserOut])
+@router.get("/api/users/{user_id}", tags=["users"], response_model=Optional[UserOut])
 def get_one(
     user_id: int,
     response: Response,
@@ -101,7 +101,7 @@ def get_one(
     return user
 
 
-@router.put("/api/users/{user_id}", response_model=Union[UserOutWithPassword, Error])
+@router.put("/api/users/{user_id}", tags=["users"], response_model=Union[UserOutWithPassword, Error])
 def update_user(
     user_id: int,
     info: UserIn,

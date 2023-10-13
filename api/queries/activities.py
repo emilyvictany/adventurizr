@@ -182,3 +182,4 @@ class ActivityRepository:
         old_data = info.dict()
         old_data['id'] = id
         return ActivityOut(**old_data)
+

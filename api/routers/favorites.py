@@ -6,27 +6,33 @@ from fastapi import (
     APIRouter,
     Request,
 )
-from jwtdown_fastapi.authentication import Token
+from typing import List, Union
 from authenticator import authenticator
 from queries.favorites import FavoriteRepository
-from queries.users import UserOut
 from queries.activities import ActivityOut
-
-
-from pydantic import BaseModel
 
 
 router = APIRouter()
 
 
-
-@router.post("/api/favorites/{user_id}/{activity_id}", response_model=bool)
+@router.post("/api/favorites/{user_id}/{activity_id}", tags=["favorites"], response_model=bool)
 def create_favorite(
-    user_id:int,
-    activity_id:int,
-    repo: FavoriteRepository=Depends(),
-    account_data: dict=Depends(authenticator.get_current_account_data),
+    user_id: int,
+    activity_id: int,
+    repo: FavoriteRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    user_id=account_data["id"]
+    user_id = account_data["id"]
 
     return repo.create_favorite(user_id, activity_id)
+
+
+@router.get("/api/favorites/{user_id}", tags=["favorites"], response_model=List[ActivityOut])
+def get_user_favorites(
+    user_id: int,
+    repo: FavoriteRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    user_id = account_data["id"]
+
+    return repo.get_single_user_favorites(user_id)
