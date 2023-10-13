@@ -36,3 +36,13 @@ def get_user_favorites(
     user_id = account_data["id"]
 
     return repo.get_single_user_favorites(user_id)
+
+
+@router.delete("/api/favorites/{activity_id}", tags=["favorites"], response_model=bool)
+def delete_favorite(
+    user_id: int,
+    activity_id: int,
+    repo: FavoriteRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> bool:
+    return repo.delete(user_id, activity_id)
