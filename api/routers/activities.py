@@ -1,8 +1,10 @@
 from fastapi import (
     Depends,
     HTTPException,
+    status,
     Response,
     APIRouter,
+    Request,
 )
 from typing import Union, List
 from queries.activities import (
@@ -17,11 +19,7 @@ from authenticator import authenticator
 router = APIRouter()
 
 
-@router.post(
-        "/api/activities",
-        tags=["activities"],
-        response_model=Union[ActivityOut, Error]
-        )
+@router.post("/api/activities", tags=["activities"], response_model=Union[ActivityOut, Error])
 def create_activity(
     activity: ActivityIn,
     response: Response,
@@ -36,11 +34,7 @@ def create_activity(
         raise HTTPException(status_code=response, detail=error_detail)
 
 
-@router.get(
-        "/api/activities",
-        tags=["activities"],
-        response_model=Union[Error, List[ActivityOut]]
-        )
+@router.get("/api/activities", tags=["activities"], response_model=Union[Error, List[ActivityOut]])
 def get_all(
     repo: ActivityRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
@@ -52,11 +46,7 @@ def get_all(
         raise {"message": "Could not get all activities"}
 
 
-@router.get(
-        "/api/activities/filtered",
-        tags=["activities"],
-        response_model=Union[Error, List[FilterOut]]
-        )
+@router.get("/api/activities/filtered", tags=["activities"], response_model=Union[Error, List[FilterOut]])
 def get_filtered(
     filter_params: FilterIn = Depends(),
     repo: ActivityRepository = Depends(),
@@ -75,11 +65,8 @@ def get_filtered(
     return filtered_activities
 
 
-@router.get(
-        "/api/activities/{activity_id}",
-        tags=["activities"],
-        response_model=Optional[ActivityOut]
-        )
+
+@router.get("/api/activities/{activity_id}", tags=["activities"], response_model=Optional[ActivityOut])
 def get_one(
     activity_id: int,
     repo: ActivityRepository = Depends(),
@@ -93,11 +80,7 @@ def get_one(
         raise {"message": "Could not get that activity"}
 
 
-@router.delete(
-        "/api/activities/{activity_id}",
-        tags=["activities"],
-        response_model=bool
-        )
+@router.delete("/api/activities/{activity_id}", tags=["activities"], response_model=bool)
 def delete_activity(
     activity_id: int,
     repo: ActivityRepository = Depends(),
@@ -106,11 +89,7 @@ def delete_activity(
     return repo.delete(activity_id)
 
 
-@router.put(
-        "/api/activities/{activity_id}",
-        tags=["activities"],
-        response_model=Union[ActivityOut, Error]
-        )
+@router.put("/api/activities/{activity_id}", tags=["activities"], response_model=Union[ActivityOut, Error])
 def update(
     activity_id: int,
     info: ActivityOut,
