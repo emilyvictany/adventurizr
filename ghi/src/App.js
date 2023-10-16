@@ -1,15 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Nav />
-      <div className="container">
-        <Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Nav />
+        <div className="container">
+          <Routes>
 
-        </Routes>
-      </div>
-    </BrowserRouter>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
