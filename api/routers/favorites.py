@@ -15,11 +15,7 @@ from queries.activities import ActivityOut
 router = APIRouter()
 
 
-@router.post(
-        "/api/favorites/{user_id}/{activity_id}",
-        tags=["favorites"],
-        response_model=bool
-        )
+@router.post("/api/favorites/{user_id}/{activity_id}", tags=["favorites"], response_model=bool)
 def create_favorite(
     user_id: int,
     activity_id: int,
@@ -31,11 +27,7 @@ def create_favorite(
     return repo.create_favorite(user_id, activity_id)
 
 
-@router.get(
-        "/api/favorites/{user_id}",
-        tags=["favorites"],
-        response_model=List[ActivityOut]
-        )
+@router.get("/api/favorites/{user_id}", tags=["favorites"], response_model=List[ActivityOut])
 def get_user_favorites(
     user_id: int,
     repo: FavoriteRepository = Depends(),
@@ -46,11 +38,8 @@ def get_user_favorites(
     return repo.get_single_user_favorites(user_id)
 
 
-@router.delete(
-        "/api/favorites/{activity_id}",
-        tags=["favorites"],
-        response_model=bool
-        )
+
+@router.delete("/api/favorites/{activity_id}", tags=["favorites"], response_model=bool)
 def delete_favorite(
     user_id: int,
     activity_id: int,
@@ -60,11 +49,7 @@ def delete_favorite(
     return repo.delete(user_id, activity_id)
 
 
-@router.get(
-        "/api/favorites/",
-        tags=["favorites"],
-        response_model=List[ActivityOut]
-        )
+@router.get("/api/favorites/", tags=["favorites"], response_model=List[ActivityOut])
 def get_all(
     repo: FavoriteRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
