@@ -9,17 +9,11 @@ A reflection on any design conversations that you had
 At least one ah-ha! moment that you had during your coding, however small
 
 Keep your journal in reverse chronological order. Always put new entries at the top. -->
-## October 13, 2023
-
-Today I worked on:
-
-* Addressing some edge cases that we want to potentially solve before deployment. Developed a plan of action to implement a solution for one particular edge case. I created new issues on the issue board relating to our frontend development. And lastly I started the frontend component for our login page.
-
 ## October 12, 2023
 
 Today I worked on:
 
-* Creating a DELETE endpoint for removing an activity from the activities data table and created an endpoint that grabs all activities that have been liked by all users.
+* Creating a DELETE endpoint for removing an activity from the activities data table
 
 ## October 11, 2023
 
