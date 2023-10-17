@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
-import LandingPage from "./LandingPage";
 import Nav from "./Nav";
+import LandingPage from "./LandingPage";
+import UserHome from "./users/UserHome";
 import LoginForm from "./users/LoginForm";
+
 
 function App() {
   return (
@@ -11,8 +13,9 @@ function App() {
         <Nav />
         <div className="container">
           <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="login" element={<LoginForm />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/home" element={<UserHome />} />
           </Routes>
         </div>
       </AuthProvider>

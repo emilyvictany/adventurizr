@@ -1,11 +1,26 @@
+import { Link } from "react-router-dom";
+
 function LandingPage() {
     return (
-    <div className="px-4 py-5 my-5 text-center">
-        <h1 className="display-5 fw-bold">Adventurizr</h1> 
-        <div className="col-lg-6 mx-auto">
-        <p className="lead mb-4">
-            Bored? Lets find an adventure!
-        </p>
+    <div>
+        <h1>Bored?</h1>
+        <div>
+            <p>Anything can be an adventure!</p>
+        </div>
+        <br></br>
+        <div>
+            <p>Your next adventure awaits...</p>
+            <Link to="/signup">
+                <button>sign up now!</button>
+            </Link>
+        </div>
+        <br></br>
+        <div>
+            <p>Already have an account? Log in
+                <Link to="/login">
+                <button>here</button>
+                </Link>
+            </p>
         </div>
     </div>
     );

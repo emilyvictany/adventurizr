@@ -1,8 +1,4 @@
-from fastapi import (
-    Depends,
-    HTTPException,
-    APIRouter,
-)
+from fastapi import (Depends, HTTPException, APIRouter,)
 from typing import List
 from authenticator import authenticator
 from queries.favorites import FavoriteRepository

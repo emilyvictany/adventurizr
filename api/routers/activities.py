@@ -1,15 +1,6 @@
-from fastapi import (
-    Depends,
-    HTTPException,
-    Response,
-    APIRouter,
-)
+from fastapi import (Depends, HTTPException, Response, APIRouter)
 from typing import Union, List
-from queries.activities import (
-    ActivityIn, ActivityRepository,
-    ActivityOut, Error,
-    FilterIn, FilterOut
-)
+from queries.activities import (ActivityIn, ActivityRepository, ActivityOut, Error, FilterIn, FilterOut)
 from jwtdown_fastapi.authentication import Optional
 from authenticator import authenticator
 
@@ -61,7 +52,6 @@ def get_filtered(
         raise HTTPException(status_code=404, detail="No matching activities found")
 
     return filtered_activities
-
 
 
 @router.get("/api/activities/{activity_id}", tags=["activities"], response_model=Optional[ActivityOut])

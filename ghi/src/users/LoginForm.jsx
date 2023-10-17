@@ -1,24 +1,27 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const { login } = useToken();
+    const navigate = useNavigate();
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    login(username, password);
-    e.target.reset();
-};
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        login(username, password);
+        e.target.reset();
+        navigate("/home");
+    };
 
-return (
-    <div className="card text-bg-light mb-3">
-        <h5 className="card-header">Login</h5>
+    return (
+        <div className="card text-bg-light mb-3">
+            <h5 className="card-header">Login</h5>
             <div className="card-body">
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="mb-3">
-                        <label className="form-label">Username:</label>
+                        <label className="form-label">Email:</label>
                         <input
                         name="username"
                         type="text"
@@ -40,8 +43,8 @@ return (
                     </div>
                 </form>
             </div>
-    </div>
-);
+        </div>
+    );
 };
 
 export default LoginForm;
