@@ -1,6 +1,4 @@
-import os
 from typing import List, Union
-from fastapi import HTTPException
 from queries.pool import pool
 from queries.activities import ActivityOut
 

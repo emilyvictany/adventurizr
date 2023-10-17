@@ -1,12 +1,9 @@
 from fastapi import (
     Depends,
     HTTPException,
-    status,
-    Response,
     APIRouter,
-    Request,
 )
-from typing import List, Union
+from typing import List
 from authenticator import authenticator
 from queries.favorites import FavoriteRepository
 from queries.activities import ActivityOut
@@ -36,7 +33,6 @@ def get_user_favorites(
     user_id = account_data["id"]
 
     return repo.get_single_user_favorites(user_id)
-
 
 
 @router.delete("/api/favorites/{activity_id}", tags=["favorites"], response_model=bool)

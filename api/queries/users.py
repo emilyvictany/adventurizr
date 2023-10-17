@@ -1,8 +1,7 @@
-
 import os
 from psycopg_pool import ConnectionPool
 from pydantic import BaseModel
-from typing import List, Union, Optional
+from typing import Union, Optional
 
 pool = ConnectionPool(conninfo=os.environ.get("DATABASE_URL"))
 

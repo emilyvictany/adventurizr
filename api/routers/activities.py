@@ -1,10 +1,8 @@
 from fastapi import (
     Depends,
     HTTPException,
-    status,
     Response,
     APIRouter,
-    Request,
 )
 from typing import Union, List
 from queries.activities import (
@@ -12,7 +10,7 @@ from queries.activities import (
     ActivityOut, Error,
     FilterIn, FilterOut
 )
-from jwtdown_fastapi.authentication import Token, Optional
+from jwtdown_fastapi.authentication import Optional
 from authenticator import authenticator
 
 
