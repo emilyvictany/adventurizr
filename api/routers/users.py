@@ -94,6 +94,19 @@ def get_one(
     return user
 
 
+@router.get("/api/users/{user_id}", tags=["users"], response_model=Optional[UserOut])
+def get_one_by_id(
+    user_id: int,
+    response: Response,
+    account: UserQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> UserOut:
+    user = account.get_user_by_id(user_id)
+    if user is None:
+        response.status_code = 404
+    return user
+
+
 @router.put("/api/users/{user_id}", tags=["users"], response_model=Union[UserOutWithPassword, Error])
 def update_user(
     user_id: int,

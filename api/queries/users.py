@@ -56,6 +56,31 @@ class UserQueries:
                     hashed_password=account[4],
                 )
 
+    def get_user_by_id(self, id: int) -> UserOut:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
+                    SELECT id, email,
+                    first_name, last_name,
+                    password
+                    FROM users
+                    WHERE id = %s;
+                    """,
+                    [id],
+                )
+                account = result.fetchone()
+                print(f'fetched account for id {id} = {str(account)}')
+                if account is None:
+                    return None
+                return UserOutWithPassword(
+                    id=account[0],
+                    first_name=account[1],
+                    last_name=account[2],
+                    email=account[3],
+                    hashed_password=account[4],
+                )
+
     def create_user(
             self,
             info: UserIn,
@@ -137,10 +162,7 @@ class UserQueries:
             last_name=record[3],
         )
 
-    def update(self,
-               user_id: int,
-               info: UserIn,
-               hashed_password: str) -> Union[UserOutWithPassword, Error]:
+    def update(self, user_id: int, info: UserIn, hashed_password: str) -> Union[UserOutWithPassword, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -167,6 +189,4 @@ class UserQueries:
 
     def user_in_to_out(self, id: int, info: UserIn, hashed_password: str):
         old_data = info.dict()
-        return UserOutWithPassword(id=id,
-                                   **old_data,
-                                   hashed_password=hashed_password)
+        return UserOutWithPassword(id=id, **old_data, hashed_password=hashed_password)
