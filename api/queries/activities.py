@@ -12,7 +12,6 @@ class ActivityIn(BaseModel):
     participants: str
     environment: str
     category: str
-    published: bool
     user_id: Optional[int]
 
 
@@ -22,7 +21,7 @@ class ActivityOut(BaseModel):
     participants: str
     environment: str
     category: str
-    published: bool
+    published: bool = False
     user_id: Optional[int]
 
 
@@ -38,24 +37,27 @@ class FilterOut(BaseModel):
 
 
 class ActivityRepository:
-    def create_activity(self,
-                        activity: ActivityIn,
-                        user_id: int) -> ActivityOut:
+    def create_activity(self, activity: ActivityIn, user_id: int) -> ActivityOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
                     INSERT INTO activities
-                        (title, participants, environment,
-                        category, published, user_id)
+                        (title,
+                        participants,
+                        environment,
+                        category,
+                        user_id)
                     VALUES
-                        (%s, %s, %s, %s, %s, %s)
+                        (%s, %s, %s, %s, %s)
                     RETURNING id
                     """,
                     [
-                        activity.title, activity.participants,
-                        activity.environment, activity.category,
-                        activity.published, user_id
+                        activity.title,
+                        activity.participants,
+                        activity.environment,
+                        activity.category,
+                        user_id
                     ]
                 )
                 id = result.fetchone()[0]

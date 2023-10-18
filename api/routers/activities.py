@@ -8,9 +8,10 @@ from authenticator import authenticator
 router = APIRouter()
 
 
-@router.post("/api/activities", tags=["activities"], response_model=Union[ActivityOut, Error])
+@router.post("/api/activities/{user_id}", tags=["activities"], response_model=Union[ActivityOut, Error])
 def create_activity(
     activity: ActivityIn,
+    # user_id: int,
     response: Response,
     repo: ActivityRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
