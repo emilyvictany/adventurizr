@@ -35,6 +35,16 @@ def get_all(
         raise {"message": "Could not get all activities"}
 
 
+@router.get("/api/activities/{user_id}", tags=["activities"], response_model=List[ActivityOut])
+def get_user_drafts(
+    user_id: int,
+    repo: ActivityRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    user_id = account_data["id"]
+    return repo.get_user_drafts(user_id)
+
+
 @router.get("/api/activities/filtered", tags=["activities"], response_model=Union[Error, List[FilterOut]])
 def get_filtered(
     filter_params: FilterIn = Depends(),

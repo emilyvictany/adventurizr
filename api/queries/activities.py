@@ -83,10 +83,53 @@ class ActivityRepository:
                     for record in result
                 ]
 
-    def filtered(self,
-                 participants: str,
-                 environment: str,
-                 category: str) -> Union[Error, List[FilterOut]]:
+    def get_user_drafts(self, user_id: int) -> List[ActivityOut]:
+        user_drafts = []
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT
+                            id,
+                            title,
+                            participants,
+                            environment,
+                            category,
+                            published,
+                            user_id
+                        FROM activities
+                        WHERE (user_id=%s
+                            AND published = false)
+                        ORDER BY id;
+                        """,
+                        [user_id]
+                    )
+                    records = db.fetchall()
+                    for record in records:
+                        user_drafts.append(
+                            ActivityOut(
+                                id=record[0],
+                                title=record[1],
+                                participants=record[2],
+                                environment=record[3],
+                                category=record[4],
+                                published=record[5],
+                                user_id=record[6]
+                            )
+                        )
+            return user_drafts
+        except Exception:
+            {"message": "no user drafts"}
+
+    def filtered(
+        self,
+        participants: str,
+        environment: str,
+        category: str) -> Union[
+            Error,
+            List[FilterOut]
+            ]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
