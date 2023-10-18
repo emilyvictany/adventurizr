@@ -40,6 +40,7 @@ async def get_token(
     request: Request,
     account: UserOut = Depends(authenticator.try_get_current_account_data)
 ) -> AccountToken | None:
+    print(f'/token account = {str(account)}')
     if account and authenticator.cookie_name in request.cookies:
         return {
             "access_token": request.cookies[authenticator.cookie_name],
@@ -58,12 +59,15 @@ async def create_user(
     hashed_password = authenticator.hash_password(user.password)
     try:
         new_user = accounts.create_user(user, hashed_password)
+        print("new user")
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create a user account with those credentials",
         )
-    form = AccountForm(username=user.email, password=user.password)
+    form = AccountForm(username=user.username, password=user.password)
+    print(form)
+    print(request.json())
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=new_user, **token.dict())
 

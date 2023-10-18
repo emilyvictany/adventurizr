@@ -93,7 +93,8 @@ class FavoriteRepository:
                             favorites.user_id AS liked_by_user_id
                         FROM favorites
                         JOIN users ON favorites.user_id = users.id
-                        JOIN activities ON favorites.activity_id = activities.id;
+                        JOIN activities
+                        ON favorites.activity_id = activities.id;
                     """,
                 )
                 favorites = db.fetchall()

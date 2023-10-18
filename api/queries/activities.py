@@ -38,7 +38,9 @@ class FilterOut(BaseModel):
 
 
 class ActivityRepository:
-    def create_activity(self, activity: ActivityIn, user_id: int) -> ActivityOut:
+    def create_activity(self,
+                        activity: ActivityIn,
+                        user_id: int) -> ActivityOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
@@ -65,7 +67,13 @@ class ActivityRepository:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    SELECT id, title, participants, environment, category, published, user_id
+                    SELECT id,
+                            title,
+                            participants,
+                            environment,
+                            category,
+                            published,
+                            user_id
                     FROM activities
                     ORDER BY id;
                     """
@@ -75,7 +83,10 @@ class ActivityRepository:
                     for record in result
                 ]
 
-    def filtered(self, participants: str, environment: str, category: str) -> Union[Error, List[FilterOut]]:
+    def filtered(self,
+                 participants: str,
+                 environment: str,
+                 category: str) -> Union[Error, List[FilterOut]]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
@@ -109,7 +120,13 @@ class ActivityRepository:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    SELECT id, title, participants, environment, category, published, user_id
+                    SELECT id,
+                            title,
+                            participants,
+                            environment,
+                            category,
+                            published,
+                            user_id
                     FROM activities
                     WHERE id=%s
                     """,

@@ -17,12 +17,12 @@ class Error(BaseModel):
 class UserIn(BaseModel):
     first_name: str
     last_name: str
-    email: str
+    username: str
     password: str
 
 
 class UserOut(BaseModel):
-    id: str
+    id: int
     email: str
     first_name: str
     last_name: str
@@ -45,6 +45,9 @@ class UserQueries:
                     [email],
                 )
                 account = result.fetchone()
+                print(f'fetched account for email {email} = {str(account)}')
+                if account is None:
+                    return None
                 return UserOutWithPassword(
                     id=account[0],
                     first_name=account[1],
@@ -76,7 +79,7 @@ class UserQueries:
                     [
                         info.first_name,
                         info.last_name,
-                        info.email,
+                        info.username,
                         hashed_password,
                     ],
                 )
@@ -134,7 +137,10 @@ class UserQueries:
             last_name=record[3],
         )
 
-    def update(self, user_id: int, info: UserIn, hashed_password: str) -> Union[UserOutWithPassword, Error]:
+    def update(self,
+               user_id: int,
+               info: UserIn,
+               hashed_password: str) -> Union[UserOutWithPassword, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -161,4 +167,6 @@ class UserQueries:
 
     def user_in_to_out(self, id: int, info: UserIn, hashed_password: str):
         old_data = info.dict()
-        return UserOutWithPassword(id=id, **old_data, hashed_password=hashed_password)
+        return UserOutWithPassword(id=id,
+                                   **old_data,
+                                   hashed_password=hashed_password)
