@@ -5,11 +5,14 @@ import LandingPage from "./LandingPage";
 import UserHome from "./users/UserHome";
 import LoginForm from "./users/LoginForm";
 import SignUpForm from "./users/Signup";
+import SingleUserFavorites from "./favorites /SingleUserFavorites";
 
 
 function App() {
   const domain = /https:\/\/[^/]+/
   const basename=process.env.PUBLIC_URL.replace(domain, "")
+
+
   return (
     <BrowserRouter basename={basename}>
       <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
@@ -20,6 +23,7 @@ function App() {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/home" element={<UserHome />} />
+            <Route path="/favorites/" index element={<SingleUserFavorites  />} />
           </Routes>
         </div>
       </AuthProvider>

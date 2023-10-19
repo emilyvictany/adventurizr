@@ -31,7 +31,7 @@ def get_user_favorites(
     return repo.get_single_user_favorites(user_id)
 
 
-@router.delete("/api/favorites/{activity_id}", tags=["favorites"], response_model=bool)
+@router.delete("/api/favorites/{user_id}/{activity_id}", tags=["favorites"], response_model=bool)
 def delete_favorite(
     user_id: int,
     activity_id: int,

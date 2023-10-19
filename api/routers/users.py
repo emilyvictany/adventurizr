@@ -2,6 +2,7 @@ from fastapi import (Depends, HTTPException, status, Response, APIRouter, Reques
 from jwtdown_fastapi.authentication import Token, Optional, Union
 from authenticator import authenticator
 from pydantic import BaseModel
+from typing import List
 from queries.users import (
     UserIn,
     UserOut,
@@ -120,3 +121,15 @@ def update_user(
     response.status_code = 200
     hashed_password = authenticator.hash_password(info.password)
     return repo.update(user_id, info, hashed_password)
+
+
+@router.get("/api/users", tags=["users"], response_model=List[UserOut])
+def get_all(
+    repo: UserQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    try:
+        return repo.get_all_users()
+    except Exception as e:
+        print(e)
+        raise {"message": "Could not get all users"}
