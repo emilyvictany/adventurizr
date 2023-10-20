@@ -24,6 +24,9 @@ lint-test-job:
 #     - cd api
 #     - pip install -r requirements.txt
 #     - python -m pytest
+#   variables:
+#     DATABASE_URL: ${DATABASE_URL}
+#     SIGNING_KEY: ${SIGNING_KEY}
 
 # Build API Image:
 build-api-image:
@@ -41,7 +44,7 @@ build-api-image:
     - main
 
 
-# # Build the React/JavaScript front-end
+# Build the React/JavaScript front-end
 # build-front-end-job:
 #   stage: build
 #   image: node:lts-bullseye
@@ -52,7 +55,7 @@ build-api-image:
 #     # CI/CD variables, that value will override the value here.
 #     # You need to substitute in your real values for
 #     # GROUP_NAME, PROJECT_NAME, & WEBSERVICE_NAME below.
-#     PUBLIC_URL: https://GROUP_NAME.gitlab.io/PROJECT_NAME/
+#     PUBLIC_URL: https://boredom-busters.gitlab.io/adventurizr/
 #     REACT_APP_API_HOST: https://DEPLOYED_API_SERVICE.mod3projects.com
 #   script:
 #     - cd ghi
@@ -63,7 +66,7 @@ build-api-image:
 #     paths:
 #       - ghi/build/
 
-# # Deploy the React/JavaScript front-end to GitLab pages
+# Deploy the React/JavaScript front-end to GitLab pages
 # pages:
 #   stage: deploy
 #   rules:

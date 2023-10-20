@@ -58,12 +58,14 @@ function Nav() {
                 </ul>
             </div>
             <div>
-                <li className="nav-item">
-                <NavLink to="/" className="nav-link" onClick={handleLogout}>Logout</NavLink>
-                </li>
-                  <li className="nav-item">
-                <NavLink className="nav-link" to="/favorites">Favorites</NavLink>
-                </li>
+                <ul>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/favorites">Favorites</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/" className="nav-link" onClick={handleLogout}>Logout</NavLink>
+                    </li>
+                </ul>
             </div>
             <div className="custom-alert-bg">
                 {logoutSuccess && (
