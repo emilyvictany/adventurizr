@@ -2,7 +2,6 @@ from fastapi import (Depends, HTTPException, status, Response, APIRouter, Reques
 from jwtdown_fastapi.authentication import Token, Optional, Union
 from authenticator import authenticator
 from pydantic import BaseModel
-from typing import List
 from queries.users import (
     UserIn,
     UserOut,

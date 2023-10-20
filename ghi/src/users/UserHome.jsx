@@ -1,30 +1,30 @@
 import React from "react";
-import useToken from "@galvanize-inc/jwtdown-for-react";
-import { useState, useEffect } from "react";
+// // import useToken from "@galvanize-inc/jwtdown-for-react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
 function UserHome() {
-    const { token } = useToken()
-    const [userId, setUserId] = useState("")
-    const [userFirstName, setUserFirstName] = useState("")
+    // const { token } = useToken()
+    // const [userId, setUserId] = useState("")
+    // const [userFirstName, setUserFirstName] = useState("")
 
-    const fetchUser = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_HOST}/token`, {
-        credentials: "include",
-    })
-    if (response.ok) {
-        // const data = await response.json()
-        // const userId = data.user
-        setUserId(userId)
-        setUserFirstName(userFirstName)
-    }
-    }
+    // const fetchUser = async () => {
+    // const response = await fetch(`${process.env.REACT_APP_API_HOST}/token`, {
+    //     credentials: "include",
+    // })
+    // if (response.ok) {
+    //     // const data = await response.json()
+    //     // const userId = data.user
+    //     setUserId(userId)
+    //     setUserFirstName(userFirstName)
+    // }
+    // }
 
-    useEffect(() => {
-    const fetchData = async () => {
-        await fetchUser()
-    }})
+    // // useEffect(() => {
+    // // const fetchData = async () => {
+    // //     await fetchUser()
+    // // }})
 
 
     return (

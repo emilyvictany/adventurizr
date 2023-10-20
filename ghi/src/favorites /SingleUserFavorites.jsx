@@ -11,7 +11,7 @@ function SingleUserFavorites() {
   function getUserFavorites() {
     fetch(
       `${process.env.REACT_APP_API_HOST}/token`,
-      { credentials: "include", }
+      { credentials: "include" }
     )
       .then((response) => response.json())
       .then((data) => {
