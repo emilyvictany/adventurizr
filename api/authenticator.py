@@ -8,10 +8,10 @@ from queries.users import UserQueries, UserOut, UserOutWithPassword
 class UserAuthenticator(Authenticator):
     async def get_account_data(
         self,
-        email: str,
+        username: str,
         accounts: UserQueries,
     ):
-        return accounts.get_user(email)
+        return accounts.get_user(username)
 
     def get_account_getter(
         self,
@@ -23,7 +23,7 @@ class UserAuthenticator(Authenticator):
         return account.hashed_password
 
     def get_user_account_for_cookie(self, account: UserOut):
-        return account.email, UserOut(**account.dict())
+        return account.username, UserOut(**account.dict())
 
 
 authenticator = UserAuthenticator(os.environ["SIGNING_KEY"])

@@ -36,7 +36,7 @@ def get_all(
         raise {"message": "Could not get all activities"}
 
 
-@router.get("/api/activities/{user_id}", tags=["activities"], response_model=List[ActivityOut])
+@router.get("/api/activities/{user_id}/drafts", tags=["activities"], response_model=List[ActivityOut])
 def get_user_drafts(
     user_id: int,
     repo: ActivityRepository = Depends(),
@@ -50,16 +50,16 @@ def get_user_drafts(
 def get_filtered(
     filter_params: FilterIn = Depends(),
     repo: ActivityRepository = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ):
+    print(f'router called with args {str(filter_params)}')
     participants = filter_params.participants
     environment = filter_params.environment
     category = filter_params.category
+
     try:
         filtered_activities = repo.filtered(participants, environment, category)
-    except Exception as e:
-        print(e)
-    if not filtered_activities:
+    except Exception:
         raise HTTPException(status_code=404, detail="No matching activities found")
 
     return filtered_activities

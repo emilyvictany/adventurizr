@@ -1,23 +1,22 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
 
 function SingleUserFavorites() {
   const [favorites, setUserFavorites] = useState([])
-  const [user, setUser] = useState('')
-  const { token, fetchWithToken } = useToken();
+  const [user, setUser] = useState({})
+  const { token } = useToken();
+
 
   function getUserFavorites() {
-    const data = fetch(
+    fetch(
       `${process.env.REACT_APP_API_HOST}/token`,
       { credentials: "include", }
     )
       .then((response) => response.json())
       .then((data) => {
         setUser(data)
-        console.log("token is:", data)
-        const favoritesData = fetch(`${process.env.REACT_APP_API_HOST}/api/favorites/${data.account.id}`,
+        fetch(`${process.env.REACT_APP_API_HOST}/api/favorites/${data.account.id}`,
           { credentials: "include", }
         )
           .then((response) => response.json())
@@ -27,6 +26,7 @@ function SingleUserFavorites() {
       })
       .catch((error) => console.log(error))
   }
+
 
   useEffect(() => {
     getUserFavorites();
@@ -55,6 +55,8 @@ function SingleUserFavorites() {
         <thead>
           <tr>
             <td>Activity title</td>
+            <td></td>
+
           </tr>
         </thead>
         <tbody>

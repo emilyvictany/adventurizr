@@ -124,11 +124,7 @@ class ActivityRepository:
         except Exception:
             {"message": "no user drafts"}
 
-    def filtered(
-        self,
-        participants: str,
-        environment: str,
-        category: str) -> Union[
+    def filtered(self, participants: str, environment: str, category: str) -> Union[
             Error,
             List[FilterOut]
             ]:
@@ -142,7 +138,6 @@ class ActivityRepository:
                         AND (environment = %s)
                             AND (category = %s)
                     """,
-
                     [
                         participants,
                         environment,

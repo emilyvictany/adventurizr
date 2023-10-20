@@ -8,6 +8,7 @@ import SignUpForm from "./users/Signup";
 import SingleUserFavorites from "./favorites /SingleUserFavorites";
 
 
+
 function App() {
   const domain = /https:\/\/[^/]+/
   const basename=process.env.PUBLIC_URL.replace(domain, "")

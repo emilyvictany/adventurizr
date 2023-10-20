@@ -19,13 +19,15 @@ class UserIn(BaseModel):
     last_name: str
     username: str
     password: str
+    email: str
 
 
 class UserOut(BaseModel):
     id: int
-    email: str
     first_name: str
     last_name: str
+    username: str
+    email: str
 
 
 class UserOutWithPassword(UserOut):
@@ -33,52 +35,28 @@ class UserOutWithPassword(UserOut):
 
 
 class UserQueries:
-    def get_user(self, email: str) -> UserOutWithPassword:
+    def get_user(self, username: str) -> UserOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
                     SELECT *
                     FROM users
-                    WHERE email = %s
+                    WHERE username = %s
                     """,
-                    [email],
+                    [username],
                 )
                 account = result.fetchone()
-                print(f'fetched account for email {email} = {str(account)}')
+                print(f'fetched account for username {username} = {str(account)}')
                 if account is None:
                     return None
                 return UserOutWithPassword(
                     id=account[0],
                     first_name=account[1],
                     last_name=account[2],
-                    email=account[3],
-                    hashed_password=account[4],
-                )
-
-    def get_user_by_id(self, id: int) -> UserOut:
-        with pool.connection() as conn:
-            with conn.cursor() as db:
-                result = db.execute(
-                    """
-                    SELECT id, email,
-                    first_name, last_name,
-                    password
-                    FROM users
-                    WHERE id = %s;
-                    """,
-                    [id],
-                )
-                account = result.fetchone()
-                print(f'fetched account for id {id} = {str(account)}')
-                if account is None:
-                    return None
-                return UserOutWithPassword(
-                    id=account[0],
-                    first_name=account[1],
-                    last_name=account[2],
-                    email=account[3],
-                    hashed_password=account[4],
+                    username=account[3],
+                    email=account[4],
+                    hashed_password=account[5],
                 )
 
     def create_user(
@@ -94,17 +72,19 @@ class UserQueries:
                             (
                                 first_name,
                                 last_name,
+                                username,
                                 email,
                                 hashed_password
                             )
                         VALUES
-                            (%s, %s, %s, %s)
+                            (%s, %s, %s, %s, %s)
                         RETURNING *;
                     """,
                     [
                         info.first_name,
                         info.last_name,
                         info.username,
+                        info.email,
                         hashed_password,
                     ],
                 )
@@ -114,8 +94,9 @@ class UserQueries:
                     id=account[0],
                     first_name=account[1],
                     last_name=account[2],
-                    email=account[3],
-                    hashed_password=account[4],
+                    username=account[3],
+                    email=account[4],
+                    hashed_password=account[5],
                 )
 
     def delete(self, user_id: int) -> bool:
@@ -141,9 +122,10 @@ class UserQueries:
                     result = db.execute(
                         """
                         SELECT id,
-                            email,
+                            username,
                             first_name,
-                            last_name
+                            last_name,
+                            email
                         FROM users
                         WHERE id=%s
                         """,
@@ -157,9 +139,10 @@ class UserQueries:
     def record_to_user_out(self, record):
         return UserOut(
             id=record[0],
-            email=record[1],
+            username=record[1],
             first_name=record[2],
             last_name=record[3],
+            email=record[4]
         )
 
     def update(self, user_id: int, info: UserIn, hashed_password: str) -> Union[UserOutWithPassword, Error]:
@@ -169,15 +152,19 @@ class UserQueries:
                     db.execute(
                         """
                         UPDATE users
-                        SET first_name=%s,
+                        SET
+                            first_name=%s,
                             last_name=%s,
+                            username=%s,
                             email=%s,
                             hashed_password=%s
                         WHERE id= %s
                         """,
                         [
+
                             info.first_name,
                             info.last_name,
+                            info.username,
                             info.email,
                             hashed_password,
                             user_id

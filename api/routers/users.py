@@ -60,7 +60,6 @@ async def create_user(
     hashed_password = authenticator.hash_password(user.password)
     try:
         new_user = accounts.create_user(user, hashed_password)
-        print("new user")
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -95,19 +94,6 @@ def get_one(
     return user
 
 
-@router.get("/api/users/{user_id}", tags=["users"], response_model=Optional[UserOut])
-def get_one_by_id(
-    user_id: int,
-    response: Response,
-    account: UserQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data),
-) -> UserOut:
-    user = account.get_user_by_id(user_id)
-    if user is None:
-        response.status_code = 404
-    return user
-
-
 @router.put("/api/users/{user_id}", tags=["users"], response_model=Union[UserOutWithPassword, Error])
 def update_user(
     user_id: int,
@@ -121,15 +107,3 @@ def update_user(
     response.status_code = 200
     hashed_password = authenticator.hash_password(info.password)
     return repo.update(user_id, info, hashed_password)
-
-
-@router.get("/api/users", tags=["users"], response_model=List[UserOut])
-def get_all(
-    repo: UserQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data),
-):
-    try:
-        return repo.get_all_users()
-    except Exception as e:
-        print(e)
-        raise {"message": "Could not get all users"}
