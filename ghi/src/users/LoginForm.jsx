@@ -21,21 +21,21 @@ const LoginForm = () => {
             <div className="card-body">
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="mb-3">
-                        <label className="form-label">Email:</label>
+                        <label className="form-label">Username:</label>
                         <input
-                        name="username"
-                        type="text"
-                        className="form-control"
-                        onChange={(e) => setUsername(e.target.value)}
+                            name="username"
+                            type="text"
+                            className="form-control"
+                            onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Password:</label>
                         <input
-                        name="password"
-                        type="password"
-                        className="form-control"
-                        onChange={(e) => setPassword(e.target.value)}
+                            name="password"
+                            type="password"
+                            className="form-control"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div>

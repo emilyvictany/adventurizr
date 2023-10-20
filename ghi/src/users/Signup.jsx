@@ -17,6 +17,7 @@ function InputForm(props) {
 const SignUpForm = () => {
     const [first_name, setFirstName] = useState('')
     const [last_name, setLastName] = useState('')
+    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -28,8 +29,10 @@ const SignUpForm = () => {
         const accountData = {
             first_name: first_name,
             last_name: last_name,
-            username: email,
+            username: username,
+            email: email,
             password: password,
+
         }
         register(
             accountData,
@@ -61,9 +64,16 @@ const SignUpForm = () => {
                             onChange={e => setLastName(e.target.value)}
                             type="text" />
                         <InputForm
+                            id="username"
+                            placeholder="username"
+                            labelText="Username"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                            type="text" />
+                        <InputForm
                             id="email"
                             placeholder="you@example.com"
-                            labelText="Email address"
+                            labelText="Email"
                             value={email}
                             onChange={e => setEmail(e.target.value)}
                             type="email" />
