@@ -1,9 +1,6 @@
-import os
-from psycopg_pool import ConnectionPool
+from queries.pool import pool
 from pydantic import BaseModel
 from typing import Union, Optional
-
-pool = ConnectionPool(conninfo=os.environ.get("DATABASE_URL"))
 
 
 class DuplicateAccountError(ValueError):

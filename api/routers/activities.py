@@ -52,7 +52,6 @@ def get_filtered(
     repo: ActivityRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data)
 ):
-    print(f'router called with args {str(filter_params)}')
     participants = filter_params.participants
     environment = filter_params.environment
     category = filter_params.category
