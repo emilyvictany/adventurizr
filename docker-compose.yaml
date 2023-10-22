@@ -5,9 +5,9 @@ volumes:
 services:
   fastapi:
     environment:
-      CORS_HOST: http://localhost:3000
+      CORS_HOST: ${PUBLIC_URL}
       DATABASE_URL: postgresql://adventurizruser:adventurizr@database/adventurizrdb
-      SIGNING_KEY: b9fb50cd67d3228d127575b4e5d380347955046afe9cb94bd
+      SIGNING_KEY: ${SIGNING_KEY}
       WAIT HOST$: db:5432
       PORT: 8000
       WAIT BEFORE: 5
@@ -43,5 +43,5 @@ services:
       HOST_OS: ${OS}
       NODE_ENV: development
       HOST: "0.0.0.0"
-      PUBLIC_URL: http://localhost:3000
+      PUBLIC_URL: ${PUBLIC_URL}
       REACT_APP_API_HOST: ${REACT_APP_API_HOST}
