@@ -6,7 +6,7 @@ services:
   fastapi:
     environment:
       CORS_HOST: http://localhost:3000
-      DATABASE_URL: postgresql://adventurizr_user:adventurizr@database/adventurizr_db
+      DATABASE_URL: postgresql://adventurizruser:adventurizr@database/adventurizrdb
       SIGNING_KEY: b9fb50cd67d3228d127575b4e5d380347955046afe9cb94bd
       WAIT HOST$: db:5432
       PORT: 8000
@@ -25,9 +25,9 @@ services:
     volumes:
         - adventurizr:/var/lib/postgresql/data
     environment:
-        POSTGRES_USER: adventurizr_user
+        POSTGRES_USER: adventurizruser
         POSTGRES_PASSWORD: adventurizr
-        POSTGRES_DB: adventurizr_db
+        POSTGRES_DB: adventurizrdb
     ports:
         - 15432:5432
 
