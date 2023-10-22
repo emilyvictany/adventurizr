@@ -36,16 +36,12 @@ class FavoriteRepository:
                             activities.category,
                             activities.published,
                             activities.user_id
-
                         FROM activities, favorites
                         WHERE (favorites.user_id=%s
                             AND favorites.activity_id = activities.id)
-
-
                         """,
                         [user_id]
                     )
-
                     records = db.fetchall()
                     for record in records:
                         user_favorites.append(
@@ -102,7 +98,6 @@ class FavoriteRepository:
                     """,
                 )
                 favorites = db.fetchall()
-
             for record in favorites:
                 activity = ActivityOut(
                     id=record[1],
@@ -114,5 +109,4 @@ class FavoriteRepository:
                     user_id=record[7]
                 )
                 all_favorites.append(activity)
-
             return all_favorites
