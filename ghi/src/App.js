@@ -5,8 +5,7 @@ import LandingPage from "./LandingPage";
 import UserHome from "./users/UserHome";
 import LoginForm from "./users/LoginForm";
 import SignUpForm from "./users/Signup";
-import SingleUserFavorites from "./favorites /SingleUserFavorites";
-
+import SingleUserFavorites from "./favorites/SingleUserFavorites";
 
 
 function App() {

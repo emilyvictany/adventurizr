@@ -146,7 +146,6 @@ class ActivityRepository:
                 )
                 activities = result.fetchall()
                 filtered_activities = []
-
                 for record in activities:
                     activity = FilterOut(
                         id=record[0],
@@ -195,7 +194,7 @@ class ActivityRepository:
                     db.execute(
                         """
                         DELETE FROM activities
-                        WHERE id = %s
+                        WHERE id=%s
                         """,
                         [activity_id]
                     )
@@ -204,11 +203,7 @@ class ActivityRepository:
             print(e)
             return False
 
-    def update(
-        self,
-        activity_id: int,
-        info: ActivityIn,
-    ) -> Union[ActivityOut, Error]:
+    def update(self, activity_id: int, info: ActivityIn) -> Union[ActivityOut, Error]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
@@ -218,7 +213,7 @@ class ActivityRepository:
                         participants=%s,
                         environment=%s,
                         category=%s
-                    WHERE id = %s
+                    WHERE id=%s
                     """,
                     [
                         info.title,
@@ -228,7 +223,6 @@ class ActivityRepository:
                         activity_id
                     ]
                 )
-
                 updated_activity = self.get_one(activity_id)
                 if updated_activity:
                     return self.activity_in_to_out(activity_id, info)

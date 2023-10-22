@@ -52,7 +52,7 @@ class FavoriteRepository:
                                 environment=record[3],
                                 category=record[4],
                                 published=record[5],
-                                user_id=record[6],
+                                user_id=record[6]
                             )
                         )
             return user_favorites

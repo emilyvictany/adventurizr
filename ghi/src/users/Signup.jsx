@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useToken from "@galvanize-inc/jwtdown-for-react"
 import { useNavigate } from "react-router-dom"
+import useUser from '../hooks/useUser'
 
 function InputForm(props) {
 
@@ -23,8 +24,9 @@ const SignUpForm = () => {
 
     const { register } = useToken()
     const navigate = useNavigate()
+    const { saveUser } = useUser()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const accountData = {
             first_name: first_name,
@@ -34,11 +36,8 @@ const SignUpForm = () => {
             password: password,
 
         }
-        register(
-            accountData,
-            `${process.env.REACT_APP_API_HOST}/api/users`
-
-        );
+        await register(accountData, `${process.env.REACT_APP_API_HOST}/api/users`);
+        await saveUser()
         e.target.reset()
         navigate("/home")
     }
