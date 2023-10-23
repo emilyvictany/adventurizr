@@ -45,6 +45,9 @@ function Nav() {
                         <NavLink className="nav-link" to="/favorites">Favorites</NavLink>
                     </li>
                     <li className="nav-item">
+                        <NavLink className="nav-link" to="/create">Create An Activity</NavLink>
+                    </li>
+                    <li className="nav-item">
                         <NavLink to="/" className="nav-link" onClick={handleLogout}>Logout</NavLink>
                     </li>
                 </ul>

@@ -6,6 +6,7 @@ import UserHome from "./users/UserHome";
 import LoginForm from "./users/LoginForm";
 import SignUpForm from "./users/Signup";
 import SingleUserFavorites from "./favorites/SingleUserFavorites";
+import CreateActivityForm from "./activities/CreateActivityForm";
 import UserProfile from "./users/UserProfile";
 
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/home" element={<UserHome />} />
             <Route path="/favorites" index element={<SingleUserFavorites  />} />
+            <Route path="/create" index element={<CreateActivityForm />} />
             <Route path="/user">
               <Route index element={<UserProfile />} />
             </Route>
