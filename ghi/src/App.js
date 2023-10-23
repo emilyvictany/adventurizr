@@ -8,6 +8,7 @@ import SignUpForm from "./users/Signup";
 import SingleUserFavorites from "./favorites/SingleUserFavorites";
 import CreateActivityForm from "./activities/CreateActivityForm";
 import UserProfile from "./users/UserProfile";
+import DeleteUser from "./users/DeleteUser";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path="/create" index element={<CreateActivityForm />} />
             <Route path="/user">
               <Route index element={<UserProfile />} />
+              <Route path="delete" element={<DeleteUser />} />
             </Route>
           </Routes>
         </div>

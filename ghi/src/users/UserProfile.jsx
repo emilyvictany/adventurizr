@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import DeleteUser from "./DeleteUser";
+import DeleteUser from "./DeleteUser";
 
 function UserProfile() {
     const [userData, setUserData] = useState({});
@@ -46,7 +46,7 @@ function UserProfile() {
                 </ul>
                 <div>
                     <button onClick={editButton} type="button">edit</button>
-                    {/* <DeleteUser user={userData} /> */}
+                    <DeleteUser user={userData} />
                 </div>
             </div>
         </div>
