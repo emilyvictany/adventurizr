@@ -16,6 +16,7 @@ function SingleUserFavorites() {
       )
       const favoritesData = await response.json()
       setUserFavorites(favoritesData)
+
     } catch (error) {
       console.log('Error while getting user favorites: ', error)
     }
@@ -26,6 +27,7 @@ function SingleUserFavorites() {
       getUserFavorites();
     }
   }, [getUserFavorites, user]);
+
 
   const handleDeleteButtonClick = async (activityId) => {
     const deleteUrl = `${process.env.REACT_APP_API_HOST}/api/favorites/${user?.id}/${activityId}`;

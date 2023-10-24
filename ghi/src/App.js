@@ -5,12 +5,11 @@ import LandingPage from "./LandingPage";
 import UserHome from "./users/UserHome";
 import LoginForm from "./users/LoginForm";
 import SignUpForm from "./users/Signup";
-import SingleUserFavorites from "./favorites/SingleUserFavorites";
 import CreateActivityForm from "./activities/CreateActivityForm";
+import ActivitySurveyForm from "./activities/ActivitySurveyForm";
 import UserProfile from "./users/UserProfile";
 import ActivityDrafts from "./activities/ActivityDrafts";
-import DeleteUser from "./users/DeleteUser";
-
+import SingleUserFavorites from "./favorites/SingleUserFavorites";
 
 function App() {
   const domain = /https:\/\/[^/]+/
@@ -20,17 +19,18 @@ function App() {
     <BrowserRouter basename={basename}>
       <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
         <Nav />
+
         <div className="container">
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/home" element={<UserHome />} />
-            <Route path="/favorites" index element={<SingleUserFavorites  />} />
+            <Route path="/favorites" element={<SingleUserFavorites />} />
             <Route path="/create" index element={<CreateActivityForm />} />
+            <Route path="/activities/filtered" element={<ActivitySurveyForm/>} />
             <Route path="/user">
               <Route index element={<UserProfile />} />
-              <Route path="delete" element={<DeleteUser />} />
             </Route>
             <Route path="/activities/drafts" element={<ActivityDrafts />} />
           </Routes>

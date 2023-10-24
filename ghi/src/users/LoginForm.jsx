@@ -1,26 +1,19 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useUser from '../hooks/useUser'
+
 
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const { login } = useToken();
     const navigate = useNavigate();
-    const { saveUser } = useUser()
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        try {
-            await login(username, password);
-            await saveUser()
-            e.target.reset();
-            navigate("/home");
-        } catch (err) {
-            console.log('Error while logging in: ', err)
-        }
+        login(username, password);
+        e.target.reset();
+        navigate("/home");
     };
 
     return (
