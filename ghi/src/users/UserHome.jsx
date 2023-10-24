@@ -15,10 +15,10 @@ function UserHome() {
                 <Link to="/favorites">
                     <button className="btn btn-outline btn-secondary btn">See favorited adventures</button>
                 </Link>
-                <Link to="/">
+                <Link to="/activities">
                     <button className="btn btn-outline btn-secondary btn">Find a new adventure</button>
                 </Link>
-                <Link to="/create">
+                <Link to="/activities/create">
                     <button className="btn btn-outline btn-secondary btn">Create an activity</button>
                 </Link>
             </div>

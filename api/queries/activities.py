@@ -21,7 +21,6 @@ class ActivityOut(BaseModel):
     participants: str
     environment: str
     category: str
-    published: bool = False
     user_id: Optional[int]
 
 
@@ -116,8 +115,7 @@ class ActivityRepository:
                                 participants=record[2],
                                 environment=record[3],
                                 category=record[4],
-                                published=record[5],
-                                user_id=record[6]
+                                user_id=record[5]
                             )
                         )
             return user_drafts

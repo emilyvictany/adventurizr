@@ -50,11 +50,11 @@ function Nav() {
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/favorites">Favorites</NavLink>
                     </li>
-                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/activities/filtered">Find an Adventure</NavLink>
+                        <li className="nav-item">
+                        <NavLink className="nav-link" to="/activities">Find an Adventure</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/create">Create An Activity</NavLink>
+                        <NavLink className="nav-link" to="/activities/create">Create An Activity</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink to="/" className="nav-link" onClick={handleLogout}>Logout</NavLink>
