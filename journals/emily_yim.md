@@ -36,6 +36,5 @@ Keep your journal in reverse chronological order. Always put new entries at the 
 ### References for Tomorrow: -->
 
 
-## September 26, 2023
+## ✨ journal in progress ✨
 
-Today, I worked on:

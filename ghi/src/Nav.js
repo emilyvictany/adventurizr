@@ -22,6 +22,7 @@ function Nav() {
 
     return (
         <nav className="navbar">
+            <div className="navbar bg-base-100">
             <div className="container-fluid">
                 <NavLink className="nav-link" to="/">Adventurizr</NavLink>
             </div>
@@ -33,14 +34,19 @@ function Nav() {
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/login">Login</NavLink>
                     </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/user">User Profile</NavLink>
-                    </li>
-
                 </ul>
             </div>
             <div>
                 <ul>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/home">Home</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/user">User Profile</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/activities/drafts">Your Drafts</NavLink>
+                    </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/favorites">Favorites</NavLink>
                     </li>
@@ -58,6 +64,7 @@ function Nav() {
                     User logged out successfully.
                 </div>
                 )}
+            </div>
             </div>
         </nav>
     )

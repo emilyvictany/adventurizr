@@ -91,7 +91,7 @@ function CreateActivityForm() {
             <h1>Create an Activity</h1>
             <form onSubmit={handleSubmit} id="create-activity-form">
                 <div>
-                    <input onChange={handleTitleChange} value={title} placeholder="Title"/>
+                    <input onChange={handleTitleChange} value={title} placeholder="Title" />
                 </div>
                 <div>
                     <select onChange={handleParticipantsChange} value={participants} placeholder="Participants">

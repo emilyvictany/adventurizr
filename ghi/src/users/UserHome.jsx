@@ -13,13 +13,13 @@ function UserHome() {
                 <p>Lets find an adventure!</p>
                 {/* Links currently go to landing page -- will replace when other components are working */}
                 <Link to="/favorites">
-                    <button>See favorited adventures</button>
+                    <button className="btn btn-outline btn-secondary btn">See favorited adventures</button>
                 </Link>
                 <Link to="/">
-                    <button>Find a new adventure</button>
+                    <button className="btn btn-outline btn-secondary btn">Find a new adventure</button>
                 </Link>
-                <Link to="/">
-                    <button>Create an activity</button>
+                <Link to="/create">
+                    <button className="btn btn-outline btn-secondary btn">Create an activity</button>
                 </Link>
             </div>
         </div>
