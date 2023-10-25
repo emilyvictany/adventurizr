@@ -69,6 +69,7 @@ function ActivitySurveyForm() {
                         <option value="Group">Group</option>
                         <option value="Duo">Duo</option>
                         <option value="Just Me">Just Me</option>
+
                     </select>
                 </label>
             </div>

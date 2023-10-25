@@ -116,7 +116,8 @@ class ActivityRepository:
                                 participants=record[2],
                                 environment=record[3],
                                 category=record[4],
-                                user_id=record[5]
+                                published=record[5],
+                                user_id=record[6]
                             )
                         )
             return user_drafts
@@ -136,11 +137,13 @@ class ActivityRepository:
                     WHERE (participants = %s)
                         AND (environment = %s)
                             AND (category = %s)
+                                AND (published = %s)
                     """,
                     [
                         participants,
                         environment,
-                        category
+                        category,
+                        True,
                     ]
                 )
                 activities = result.fetchall()
