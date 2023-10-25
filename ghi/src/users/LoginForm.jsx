@@ -6,9 +6,10 @@ import useUser from '../hooks/useUser'
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const { login } = useToken();
+    const { token, login } = useToken();
     const navigate = useNavigate();
     const { saveUser } = useUser()
+    const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,10 +17,17 @@ const LoginForm = () => {
         try {
             await login(username, password);
             await saveUser()
-            e.target.reset();
-            navigate("/home");
+
+            if (token) {
+                navigate("/home");
+                e.target.reset();
+            } else {
+                setError("Login failed! Please check your username and password.");
+            }
+
         } catch (err) {
             console.log('Error while logging in: ', err)
+            setError("Error occurred while logging in.");
         }
     };
 
@@ -46,6 +54,11 @@ const LoginForm = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
+                    {error && (
+                        <div className="alert alert-danger" role="alert">
+                            {error}
+                        </div>
+                    )}
                     <div>
                         <input className="btn btn-primary" type="submit" value="Login" />
                     </div>

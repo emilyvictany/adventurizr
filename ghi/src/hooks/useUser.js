@@ -12,7 +12,7 @@ const useUser = () => {
 
   const saveUser = async () => {
     try {
-      await sleep(1000);
+      await sleep(2000);
 
       const response = await fetch(`${process.env.REACT_APP_API_HOST}/token`, {
         credentials: "include",

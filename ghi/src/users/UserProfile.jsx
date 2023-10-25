@@ -1,33 +1,10 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteUser from "./DeleteUser";
+import useUser from "../hooks/useUser";
 
 function UserProfile() {
-    const [userData, setUserData] = useState({});
+    const { user } = useUser()
     const navigate = useNavigate();
-
-    useEffect(() => {
-        async function getUserData() {
-            try {
-                const response = await fetch(
-                    `${process.env.REACT_APP_API_HOST}/token`,
-                    { credentials: "include" }
-                );
-                if (response.ok) {
-                    const data = await response.json();
-                    setUserData(data.account);
-                } else {
-                    console.log("Failed to fetch user data");
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        getUserData();
-    }, []);
-
-    console.log("user data", userData);
 
     function editButton(e) {
         e.preventDefault();
@@ -39,14 +16,14 @@ function UserProfile() {
             <h1>User Profile</h1>
             <div>
                 <ul>
-                    <p>First name: {userData.first_name}</p>
-                    <p>Last name: {userData.last_name}</p>
-                    <p>username: {userData.username}</p>
-                    <p>email: {userData.email}</p>
+                    <p>First name: {user?.first_name}</p>
+                    <p>Last name: {user?.last_name}</p>
+                    <p>username: {user?.username}</p>
+                    <p>email: {user?.email}</p>
                 </ul>
                 <div>
                     <button onClick={editButton} type="button">edit</button>
-                    <DeleteUser user={userData} />
+                    <DeleteUser user={user} />
                 </div>
             </div>
         </div>

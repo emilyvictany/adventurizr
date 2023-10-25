@@ -3,7 +3,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
 
 function CreateActivityForm() {
-    const { user } = useUser()
+    const { user } = useUser();
     const { token } = useToken();
     const [title, setTitle] = useState('');
     const [participants, setParticipants] = useState('');

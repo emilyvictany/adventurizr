@@ -11,6 +11,7 @@ import UserProfile from "./users/UserProfile";
 import ActivityDrafts from "./activities/ActivityDrafts";
 import SingleUserFavorites from "./favorites/SingleUserFavorites";
 import DeleteUser from "./users/DeleteUser";
+import EditUserProfile from "./users/EditUserProfile";
 
 function App() {
   const domain = /https:\/\/[^/]+/
@@ -31,6 +32,7 @@ function App() {
             <Route path="/user">
               <Route index element={<UserProfile />} />
               <Route path="delete" element={<DeleteUser />} />
+              <Route path="edit" element={<EditUserProfile />} />
             </Route>
 
             <Route path="/activities">

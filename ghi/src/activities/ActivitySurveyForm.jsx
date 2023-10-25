@@ -16,7 +16,7 @@ function ActivitySurveyForm() {
     const fetchFilteredActivities = async (participants, environment, category) => {
         try {
             const response = await fetch(
-                `${process.env.REACT_APP_API_HOST}/api/activities/filtered/?participants=${participants}&environment=${environment}&category=${category}`,
+                `${process.env.REACT_APP_API_HOST}/api/activities/filtered?participants=${participants}&environment=${environment}&category=${category}`,
                 {
                     method: "GET",
                     headers: {
