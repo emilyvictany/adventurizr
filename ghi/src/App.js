@@ -12,6 +12,8 @@ import ActivityDrafts from "./activities/ActivityDrafts";
 import SingleUserFavorites from "./favorites/SingleUserFavorites";
 import DeleteUser from "./users/DeleteUser";
 import EditUserProfile from "./users/EditUserProfile";
+import EmptyDrafts from "./activities/EmptyDrafts";
+import EmptyFavorites from "./favorites/EmptyFavorites";
 
 function App() {
   const domain = /https:\/\/[^/]+/
@@ -38,10 +40,14 @@ function App() {
             <Route path="/activities">
               <Route index element={<ActivitySurveyForm />} />
               <Route path="drafts" element={<ActivityDrafts />} />
+              <Route path="drafts/empty" element={<EmptyDrafts />} />
               <Route path="create" element={<CreateActivityForm />} />
             </Route>
 
-            <Route path="/favorites" element={<SingleUserFavorites />} />
+            <Route path="/favorites">
+              <Route index element={<SingleUserFavorites />} />
+              <Route path="empty" element={<EmptyFavorites />}/>
+            </Route>
           </Routes>
         </div>
       </AuthProvider>

@@ -1,12 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
-
+import {  useNavigate } from "react-router-dom";
 
 function SingleUserFavorites() {
   const [favorites, setUserFavorites] = useState([])
   const { fetchWithToken } = useToken();
   const { user } = useUser()
+  const navigate = useNavigate();
 
   const getUserFavorites = useCallback(async () => {
     try {
@@ -16,11 +17,13 @@ function SingleUserFavorites() {
       )
       const favoritesData = await response.json()
       setUserFavorites(favoritesData)
-
+      if (favoritesData.length === 0) {
+        navigate("/favorites/empty");
+      }
     } catch (error) {
       console.log('Error while getting user favorites: ', error)
     }
-  }, [user?.id])
+  }, [user?.id, navigate])
 
   useEffect(() => {
     if (user) {

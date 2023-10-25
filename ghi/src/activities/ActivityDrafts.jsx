@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import useUser from '../hooks/useUser';
 import useToken from '@galvanize-inc/jwtdown-for-react';
+import { Link, useNavigate } from "react-router-dom";
 
 
 const ActivityDraftsPage = () => {
@@ -13,8 +14,9 @@ const ActivityDraftsPage = () => {
     const [participants, setParticipants] = useState("");
     const [environment, setEnvironment] = useState("");
     const [category, setCategory] = useState("");
+    const navigate = useNavigate();
 
-    const resetInputFields = ({ activityIdx }) => {
+    const resetInputFields = () => {
         setTitle("")
         setParticipants("")
         setEnvironment("")
@@ -29,10 +31,13 @@ const ActivityDraftsPage = () => {
             )
             const activityDraftData = await response.json();
             setActivityDrafts(activityDraftData);
+            if (activityDraftData.length === 0) {
+                navigate("/activities/drafts/empty");
+            }
         } catch (error) {
             console.log('Error while getting user activity drafts: ', error);
         }
-    }, [user?.id]);
+    }, [user?.id, navigate]);
 
     useEffect(() => {
         if (user) {
@@ -65,7 +70,7 @@ const ActivityDraftsPage = () => {
     ];
 
     const handleEditButton = async (activityId, activityIdx) => {
-        console.log('activityId: ', activityId)
+        // console.log('activityId: ', activityId)
         setEditActivityId(activityId);
         setTitle(activityDrafts[activityIdx].title)
         setParticipants(activityDrafts[activityIdx].participants)
@@ -94,6 +99,22 @@ const ActivityDraftsPage = () => {
             setEditActivityId(null);
         } catch (error) {
             console.log('Error while updating the activity: ', error);
+        }
+    };
+
+    const handlePublishActivity = async (activityId) => {
+        console.log('activityId from handlePublishActivity: ', activityId)
+        const updateUrl = `${process.env.REACT_APP_API_HOST}/api/activities/${activityId}/publish`;
+        try {
+            await fetchWithToken(
+                updateUrl,
+                'PUT',
+                { 'Content-Type': 'application/json' },
+            );
+            await getUserDrafts();
+            setEditActivityId(null);
+        } catch (error) {
+            console.log('Error while publishing the activity: ', error);
         }
     };
 
@@ -235,10 +256,20 @@ const ActivityDraftsPage = () => {
                                     </button>
                                 )}
                             </td>
+                            <td>
+                                <button className="btn btn-outline btn-secondary btn btn-sm" onClick={() => handlePublishActivity(activity.id)}>
+                                    Publish
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <div>
+                <Link to="/activities/create">
+                    <button className="btn btn-outline btn-secondary btn">Create an activity!</button>
+                </Link>
+            </div>
         </div>
     );
 }

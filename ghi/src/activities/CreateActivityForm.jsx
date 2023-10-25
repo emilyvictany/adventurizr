@@ -1,6 +1,8 @@
 import { useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
+import { useNavigate } from "react-router-dom";
+
 
 function CreateActivityForm() {
     const { user } = useUser();
@@ -9,6 +11,7 @@ function CreateActivityForm() {
     const [participants, setParticipants] = useState('');
     const [environment, setEnvironment] = useState('');
     const [category, setCategory] = useState('');
+    const navigate = useNavigate();
 
     const participantsData = [
         { participants: 'Just Me' },
@@ -57,11 +60,12 @@ function CreateActivityForm() {
 
 
         if (response.ok) {
-
             setTitle('');
             setParticipants('');
             setEnvironment('');
             setCategory('');
+            navigate('/activities/drafts');
+
         }
     }
 
@@ -84,7 +88,6 @@ function CreateActivityForm() {
         const value = e.target.value;
         setCategory(value);
     }
-
 
     return (
         <div>
