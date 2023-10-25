@@ -18,7 +18,7 @@ function LandingPage() {
                 <p className="black-txt">Your next adventure awaits...</p>
                 <div className="divsmallspace"></div>
                 <Link to="/signup">
-                    <button className="btn btn-lg btn-error">sign up now!</button>
+                    <button className="btn btn-lg btn-error text-white">sign up now!</button>
                 </Link>
             </div>
             <br></br>

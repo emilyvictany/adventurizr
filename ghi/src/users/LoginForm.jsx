@@ -25,44 +25,64 @@ const LoginForm = () => {
                 setError("Login failed! Please check your username and password.");
             }
 
+
+            if (token) {
+                navigate("/home");
+                e.target.reset();
+            } else {
+                setError("Login failed! Please check your username and password.");
+            }
+
         } catch (err) {
             console.log('Error while logging in: ', err)
+            setError("Error occurred while logging in.");
             setError("Error occurred while logging in.");
         }
     };
 
     return (
-        <div className="card text-bg-light mb-3">
-            <h5 className="card-header">Login</h5>
-            <div className="card-body">
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className="mb-3">
-                        <label className="form-label">Username:</label>
-                        <input
-                            name="username"
-                            type="text"
-                            className="form-control"
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Password:</label>
-                        <input
-                            name="password"
-                            type="password"
-                            className="form-control"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    {error && (
-                        <div className="alert alert-danger" role="alert">
-                            {error}
+
+        <div>
+            <div className="min-h-screen flex">
+                <div className="flex-1 ... bg-lightorange">
+                    <div className="card text-bg-light mb-3 divspace">
+                        <h5 className="text-red-500 text-2xl divspace">Login</h5>
+                        <div className="card-body">
+                            <form onSubmit={(e) => handleSubmit(e)}>
+                                <div className="mb-3">
+                                    <label className="form-label divspace">Username:</label>
+                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
+                                        <input
+                                            name="username"
+                                            type="text"
+                                            className="form-control input input-bordered input-error w-full max-w-xs"
+                                            onChange={(e) => setUsername(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label divspace">Password:</label>
+                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
+                                        <input
+                                            name="password"
+                                            type="password"
+                                            className="form-control input input-bordered input-error w-full max-w-xs"
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                {error && (
+                                    <div className="alert alert-danger" role="alert">
+                                        {error}
+                                    </div>
+                                )}
+                                <div className="divspace">
+                                    <input className="btn btn-error text-white" type="submit" value="Login" />
+                                </div>
+                            </form>
                         </div>
-                    )}
-                    <div>
-                        <input className="btn btn-primary" type="submit" value="Login" />
-                    </div>
-                </form>
+                    </div></div>
+                <div className="flex-1 ..."></div>
             </div>
         </div>
     );

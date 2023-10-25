@@ -24,46 +24,20 @@ function Nav() {
     }
 
     return (
-        <nav className="navbar">
-            <div className="navbar bg-base-100">
+
+        <nav  className="navbar bg-navred text-primary-content ">
             <div className="container-fluid">
-                <NavLink className="nav-link" to="/">Adventurizr</NavLink>
+                <NavLink className="btn btn-ghost normal-case text-xl" to="/">Adventurizr</NavLink>
             </div>
-            <div className="navbar-collapse justify-content-end align-center">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/signup">Signup</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/login">Login</NavLink>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/home">Home</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/user">User Profile</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/activities/drafts">Your Drafts</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/favorites">Favorites</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/activities">Find an Adventure</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/activities/create">Create An Activity</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink to="/" className="nav-link" onClick={handleLogout}>Logout</NavLink>
-                    </li>
-                </ul>
-            </div>
+            <div className="topnav" ><NavLink className="link link-hover text-sm" to="/signup">Signup</NavLink></div>
+            <div className="topnav"><NavLink className="link link-hover text-sm" to="/login">Login</NavLink></div>
+            <div className="topnav" ><NavLink className="link link-hover text-sm" to="/favorites">Favorites</NavLink></div>
+            <div className="topnav" ><NavLink className="link link-hover text-sm" to="/activities">Find an Adventure</NavLink></div>
+            <div className="topnav"><NavLink className="link link-hover text-sm" to="/home">Home</NavLink></div>
+            <div className="topnav"><NavLink className="link link-hover text-sm" to="/user">User Profile</NavLink></div>
+            <div className="topnav"><NavLink className="link link-hover text-sm" to="/activities/drafts">Your Drafts</NavLink></div>
+            <div className="topnav"><NavLink className="link link-hover text-sm" to="/activities/create">Create An Activity</NavLink></div>
+            <div className="topnav"><NavLink to="/" className="link link-hover text-sm" onClick={handleLogout}>Logout</NavLink></div>
             <div className="custom-alert-bg">
                 {logoutSuccess && (
                     <div className="alert alert-danger" role="alert">
@@ -71,9 +45,14 @@ function Nav() {
                     </div>
                 )}
             </div>
-            </div>
+
         </nav>
+
     )
 }
+
+
+
+
 
 export default Nav;

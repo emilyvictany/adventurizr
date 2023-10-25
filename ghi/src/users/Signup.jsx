@@ -5,13 +5,15 @@ import useUser from '../hooks/useUser'
 
 function InputForm(props) {
 
-    const { id, placeholder, labelText, value, onChange, type } = props;
+    const { id, placeholder, value, onChange, type } = props;
 
     return (
-        <div className="mb-4">
-            <label htmlFor={id} className="form-label">{labelText}</label>
-            <input value={value} onChange={onChange} required type={type} className="form-control" id={id} placeholder={placeholder}></input>
+        <div className="form-control">
+
+            <input value={value} onChange={onChange} required type={type} className="input input-bordered input-error w-full max-w-xs" id={id} placeholder={placeholder}></input>
+
         </div>
+
     )
 }
 
@@ -43,51 +45,66 @@ const SignUpForm = () => {
     }
 
     return (
-        <div className="card text-bg-light mb-3">
-            <h5 className="card-header">Signup</h5>
-            <div className="card-body">
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className="mb-3">
-                        <InputForm
-                            id="first_name"
-                            placeholder="first name"
-                            labelText="First name"
-                            value={first_name}
-                            onChange={e => setFirstName(e.target.value)}
-                            type="text" />
-                        <InputForm
-                            id="last_name"
-                            placeholder="last name"
-                            labelText="Last name"
-                            value={last_name}
-                            onChange={e => setLastName(e.target.value)}
-                            type="text" />
-                        <InputForm
-                            id="username"
-                            placeholder="username"
-                            labelText="Username"
-                            value={username}
-                            onChange={e => setUsername(e.target.value)}
-                            type="text" />
-                        <InputForm
-                            id="email"
-                            placeholder="you@example.com"
-                            labelText="Email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            type="email" />
-                        <InputForm
-                            id="password"
-                            placeholder="password"
-                            labelText="Password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                            type="password" />
-                        <input type="submit" className="btn btn-primary" value="Register" />
-                    </div>
-                </form>
+        <div>
+            <div className="min-h-screen flex">
+                <div className="flex-1 ... bg-lightorange">
+                    <div className="card text-bg-light mb-3 divspace">
+                        <h5 className="text-red-500 text-2xl divspace" >Signup</h5>
+                        <div className="card-body">
+                            <form onSubmit={(e) => handleSubmit(e)}>
+                                <div className="divspace" >
+                                    <label htmlFor="first_name" className="form-label divspace">First name</label>
+                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
+                                        <InputForm
+                                            placeholder="first name"
+                                            value={first_name}
+                                            onChange={e => setFirstName(e.target.value)}
+                                            type="text" />
+                                    </div>
+                                    <label htmlFor="last_name" className="form-label divspace">Last name</label>
+                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
+                                        <InputForm
+                                            placeholder="last name"
+                                            value={last_name}
+                                            onChange={e => setLastName(e.target.value)}
+                                            type="text" />
+                                    </div>
+                                    <label htmlFor="username" className="form-label divspace">Username</label>
+                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
+                                        <InputForm
+                                            placeholder="username"
+                                            value={username}
+                                            onChange={e => setUsername(e.target.value)}
+                                            type="text" />
+                                    </div>
+                                    <label htmlFor="email" className="form-label divspace">Email</label>
+                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
+                                        <InputForm
+                                            placeholder="you@example.com"
+                                            labelText="Email address"
+                                            value={email}
+                                            onChange={e => setEmail(e.target.value)}
+                                            type="email" />
+                                    </div>
+                                    <label htmlFor="password" className="form-label divspace">Password</label>
+                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
+                                        <InputForm
+                                            placeholder="password"
+                                            value={password}
+                                            onChange={e => setPassword(e.target.value)}
+                                            type="password" />
+                                    </div>
+                                    <div className="divspace">
+                                        <input type="submit" className="btn btn-error text-white" value="Register" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div></div>
+                <div className="flex-1 ..."></div>
             </div>
         </div>
+
     )
 }
 

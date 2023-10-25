@@ -34,8 +34,12 @@ body{
 
 .divlargespace {
 
-  padding: 30px 30px;
+  padding: 60px 35px;
 
+}
+
+.divmedspace {
+  padding: 15px 150px
 }
 
 .divsmallspace {

@@ -46,30 +46,30 @@ function SingleUserFavorites() {
   };
 
   return (
-    <div>
-      <h1>favorites</h1>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <td>Activity title</td>
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
+
+    <div className="divspace">
+      <h1 className="divlargespace text-center text-2xl font-bold">Favorites</h1>
+      <div className="divspace">
+        <div className=" grid gap-4 grid-cols-3 grid-rows-3 grid-flow-col ">
           {favorites.map(favorite => {
-            return (<tr key={favorite.id}>
-              <td>{favorite.title}</td>
-              <td> <button
-                className="btn btn-outline-danger btn-sm"
-                onClick={() => handleDeleteButtonClick(favorite.id)}
-              >
-                Delete
-              </button></td>
-            </tr>)
+            return (<div key={favorite.id}>
+              <div className="divspace bg-lightorange outline">
+                <button className="btn-xs btn-square btn-outline" onClick={() => handleDeleteButtonClick(favorite.id)}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+                <div className="divsmallspace">
+                  <h2 className="card-title">{favorite.title}</h2>
+                </div>
+                <br></br>
+              </div>
+            </div>
+            )
           })}
-        </tbody>
-      </table>
-    </div>
+        </div>
+      </div >
+    </div >
+
+
   );
 }
 

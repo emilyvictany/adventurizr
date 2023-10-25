@@ -38,7 +38,7 @@ function App() {
             </Route>
 
             <Route path="/activities">
-              <Route index element={<ActivitySurveyForm />} />
+              <Route  index element={<ActivitySurveyForm />} />
               <Route path="drafts" element={<ActivityDrafts />} />
               <Route path="drafts/empty" element={<EmptyDrafts />} />
               <Route path="create" element={<CreateActivityForm />} />

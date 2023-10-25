@@ -59,73 +59,84 @@ function ActivitySurveyForm() {
 
 
     return (
-        <div>
-            <div>
-                <label>
-                    Participants:
-                    <br></br>
-                    <select id="participants" onChange={(e) => setParticipants(e.target.value)} value={participants}>
-                        <option value="Select">Select</option>
-                        <option value="Group">Group</option>
-                        <option value="Duo">Duo</option>
-                        <option value="Just Me">Just Me</option>
+        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Let's Find an Adventure!</h1>
+                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <form className="space-y-6">
+                        <div>
+                            <label className="block text-sm font-medium leading-6 text-gray-900 indent-8">Participants:</label>
 
-                    </select>
-                </label>
+                            <div className="mt-2 text-center">
+                                <select id="participants" onChange={(e) => setParticipants(e.target.value)} value={participants} className="select select-secondary w-full max-w-xs">
+                                    <option value="Select">Select</option>
+                                    <option value="Group">Group</option>
+                                    <option value="Duo">Duo</option>
+                                    <option value="Just Me">Just Me</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium leading-6 text-gray-900 indent-8">
+                                Environment: </label>
+                            <div className="mt-2 text-center">
+                                <select id="environment" onChange={(e) => setEnvironment(e.target.value)} value={environment} className="select select-secondary w-full max-w-xs">
+                                    <option value="Select">Select</option>
+                                    <option value="Indoor Adventure">Indoor Adventure</option>
+                                    <option value="Outdoor Adventure">Outdoor Adventure</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium leading-6 text-gray-900 indent-8">Category:</label>
+                            <div className="mt-2 text-center">
+                                <select id="category" onChange={(e) => setCategory(e.target.value)} value={category} className="select select-secondary w-full max-w-xs" >
+                                    <option value="Select">Select</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Staying In">Staying In</option>
+                                    <option value="Art and Music">Art and Music</option>
+                                    <option value="Random">Random</option>
+                                    <option value="Tech and Gaming">Tech and Gaming</option>
+                                    <option value="Date Ideas">Date Ideas</option>
+                                    <option value="Culinary Experiences">Culinary Experiences</option>
+                                    <option value="Fitness">Fitness</option>
+                                    <option value="Personal Wellness">Personal Wellness</option>
+                                    <option value="Sports and Recreation">Sports and Recreation</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br></br>
+                <div className="divmedspace">
+                    <button onClick={handleFilter} className=" btn btn-error text-white">Filter</button>
+                </div>
+
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>Activity title</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {filteredActivities.map(activity => {
+                            return (<tr key={activity.id}>
+                                <td>{activity.title}</td>
+                                <td> <button
+                                    className="btn btn-outline-danger btn-sm"
+                                    onClick={() => LikeButton(activity.id)}
+                                >
+                                    Like
+                                </button></td>
+                            </tr>)
+                        })}
+                    </tbody>
+                </table>
             </div>
-            <div>
-                <label>
-                    Environment:
-                    <br></br>
-                    <select id="environment" onChange={(e) => setEnvironment(e.target.value)} value={environment}>
-                        <option value="Select">Select</option>
-                        <option value="Indoor Adventure">Indoor Adventure</option>
-                        <option value="Outdoor Adventure">Outdoor Adventure</option>
-                    </select>
-                </label>
-            </div>
-            <div>
-                <label>Category:
-                    <br></br>
-                    <select id="category" onChange={(e) => setCategory(e.target.value)} value={category} >
-                        <option value="Select">Select</option>
-                        <option value="Nature">Nature</option>
-                        <option value="Staying In">Staying In</option>
-                        <option value="Art and Music">Art and Music</option>
-                        <option value="Random">Random</option>
-                        <option value="Tech and Gaming">Tech and Gaming</option>
-                        <option value="Date Ideas">Date Ideas</option>
-                        <option value="Culinary Experiences">Culinary Experiences</option>
-                        <option value="Fitness">Fitness</option>
-                        <option value="Personal Wellness">Personal Wellness</option>
-                        <option value="Sports and Recreation">Sports and Recreation</option>
-                    </select>
-                </label>
-            </div>
-            <br></br>
-            <button onClick={handleFilter}>Filter</button>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <td>Activity title</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredActivities.map(activity => {
-                        return (<tr key={activity.id}>
-                            <td>{activity.title}</td>
-                            <td> <button
-                                className="btn btn-outline-danger btn-sm"
-                                onClick={() => LikeButton(activity.id)}
-                            >
-                                Like
-                            </button></td>
-                        </tr>)
-                    })}
-                </tbody>
-            </table>
-        </div>
+        </div >
+
     );
 };
 

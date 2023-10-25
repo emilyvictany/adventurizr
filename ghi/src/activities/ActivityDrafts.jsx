@@ -135,136 +135,140 @@ const ActivityDraftsPage = () => {
     };
 
     return (
-        <div>
-            <h1>Your Activity Drafts!</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Participants</th>
-                        <th>Environment</th>
-                        <th>Category</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {activityDrafts.map((activity, i) => (
-                        <tr key={activity.id}>
-                            <td>{editActivityId === activity.id ?
-                                <input
-                                    value={!!title ? title : activity.title}
-                                    onChange={(event) => {
-                                        console.log('activityDrafts[i]: ', activityDrafts[i])
-                                        setTitle(event.target.value)
-                                        setActivityDraftToUpdate({
-                                            ...activityDrafts[i],
-                                            title: event.target.value,
-                                            participants: !!participants ? participants : activity.participants,
-                                            environment: !!environment ? environment : activity.environment,
-                                            category: !!category ? category : activity.category,
-                                        })
-                                    }}
-                                    type="text"
-                                    name={activity.title}
-                                    className="form-control"
-                                /> : activity.title}
-                            </td>
-                            <td>{editActivityId === activity.id ?
-                                <select
-                                    value={!!participants ? participants : activity.participants}
-                                    onChange={(event) => {
-                                        setParticipants(event.target.value)
-                                        setActivityDraftToUpdate({
-                                            ...activityDrafts[i],
-                                            title: !!title ? title : activity.title,
-                                            participants: event.target.value,
-                                            environment: !!environment ? environment : activity.environment,
-                                            category: !!category ? category : activity.category,
-                                        })
-                                    }}
-                                    placeholder="Participants">
-                                    {/* <option defaultValue="">Choose the participants</option> */}
-                                    {participantsData.map((item, index) => {
-                                        return (
-                                            <option key={index} value={item.participants}>{item.participants}</option>
-                                        )
-                                    })}
-                                </select> : activity.participants}
-                            </td>
-                            <td>{editActivityId === activity.id ?
-                                <select
-                                    value={!!environment ? environment : activity.environment}
-                                    onChange={(event) => {
-                                        setEnvironment(event.target.value)
-                                        setActivityDraftToUpdate({
-                                            ...activityDrafts[i],
-                                            title: !!title ? title : activity.title,
-                                            participants: !!participants ? participants : activity.participants,
-                                            environment: event.target.value,
-                                            category: !!category ? category : activity.category,
-                                        })
-                                    }}
-                                placeholder="Environment">
-                                {/* <option defaultValue="">Choose the Environment</option> */}
-                                {environmentData.map((item, index) => {
-                                return (
-                                <option key={index} value={item.environment}>{item.environment}</option>
-                                )
-                                })}
-                                </select> : activity.environment}
-                            </td>
-                            <td>{editActivityId === activity.id ?
-                                <select
-                                    value={!!category ? category : activity.category}
-                                    onChange={(event) => {
-                                        setCategory(event.target.value)
-                                        setActivityDraftToUpdate({
-                                            ...activityDrafts[i],
-                                            title: !!title ? title : activity.title,
-                                            participants: !!participants ? participants : activity.participants,
-                                            environment: !!environment ? environment : activity.environment,
-                                            category: event.target.value,
-                                        })
-                                    }}
-                                    placeholder="Category">
-                                    {/* <option defaultValue="">Choose the Category</option> */}
-                                    {categoryData.map((item, index) => {
-                                        return (
-                                            <option key={index} value={item.category}>{item.category}</option>
-                                        )
-                                    })}
-                                </select> : activity.category}
-                            </td>
-                            <td>
-                                {editActivityId === activity.id ? (
-                                    <button className="btn btn-outline btn-success btn btn-sm" onClick={() => handleUpdateActivityDraft({ id: activity.id, activityDraftToUpdate })}>
-                                        Save
-                                    </button>
-                                ) : (
-                                    <button className="btn btn-outline btn-info btn btn-sm" onClick={() => handleEditButton(activity.id, i)}>
-                                        Edit
-                                    </button>
-                                )}
-                            </td>
-                            <td>
-                                {editActivityId === activity.id ? (
-                                    <button className="btn btn-outline btn-warning btn btn-sm" onClick={() => { handleCancelEdit({ activityIdx: i}) }}>
-                                        Cancel
-                                    </button>
-                                ) : (
-                                    <button className="btn btn-outline btn-error btn btn-sm" onClick={() => handleDeleteButton(activity.id)}>
-                                        Delete
-                                    </button>
-                                )}
-                            </td>
-                            <td>
-                                <button className="btn btn-outline btn-secondary btn btn-sm" onClick={() => handlePublishActivity(activity.id)}>
-                                    Publish
-                                </button>
-                            </td>
+        <div className='divspace'>
+            <h1 className="divlargespace text-center text-2xl font-bold">Your Activity Drafts!</h1>
+            <br></br>
+            <div className="overflow-x-auto ">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Participants</th>
+                            <th>Environment</th>
+                            <th>Category</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {activityDrafts.map((activity, i) => (
+                            <tr key={activity.id}>
+                                <td>{editActivityId === activity.id ?
+                                    <input
+
+                                        value={!!title ? title : activity.title}
+                                        onChange={(event) => {
+                                            console.log('activityDrafts[i]: ', activityDrafts[i])
+                                            setTitle(event.target.value)
+                                            setActivityDraftToUpdate({
+                                                ...activityDrafts[i],
+                                                title: event.target.value,
+                                                participants: !!participants ? participants : activity.participants,
+                                                environment: !!environment ? environment : activity.environment,
+                                                category: !!category ? category : activity.category,
+                                            })
+                                        }}
+                                        type="text"
+                                        name={activity.title}
+                                        className="from-control"
+                                    /> : activity.title}
+                                </td>
+                                <td>{editActivityId === activity.id ?
+                                    <select
+                                        value={!!participants ? participants : activity.participants}
+                                        onChange={(event) => {
+                                            setParticipants(event.target.value)
+                                            setActivityDraftToUpdate({
+                                                ...activityDrafts[i],
+                                                title: !!title ? title : activity.title,
+                                                participants: event.target.value,
+                                                environment: !!environment ? environment : activity.environment,
+                                                category: !!category ? category : activity.category,
+                                            })
+                                        }}
+                                        placeholder="Participants">
+                                        {/* <option defaultValue="">Choose the participants</option> */}
+                                        {participantsData.map((item, index) => {
+                                            return (
+                                                <option key={index} value={item.participants}>{item.participants}</option>
+                                            )
+                                        })}
+                                    </select> : activity.participants}
+                                </td>
+                                <td>{editActivityId === activity.id ?
+                                    <select
+                                        value={!!environment ? environment : activity.environment}
+                                        onChange={(event) => {
+                                            setEnvironment(event.target.value)
+                                            setActivityDraftToUpdate({
+                                                ...activityDrafts[i],
+                                                title: !!title ? title : activity.title,
+                                                participants: !!participants ? participants : activity.participants,
+                                                environment: event.target.value,
+                                                category: !!category ? category : activity.category,
+                                            })
+                                        }}
+                                        placeholder="Environment">
+                                        {/* <option defaultValue="">Choose the Environment</option> */}
+                                        {environmentData.map((item, index) => {
+                                            return (
+                                                <option key={index} value={item.environment}>{item.environment}</option>
+                                            )
+                                        })}
+                                    </select> : activity.environment}
+                                </td>
+                                <td>{editActivityId === activity.id ?
+                                    <select
+                                        value={!!category ? category : activity.category}
+                                        onChange={(event) => {
+                                            setCategory(event.target.value)
+                                            setActivityDraftToUpdate({
+                                                ...activityDrafts[i],
+                                                title: !!title ? title : activity.title,
+                                                participants: !!participants ? participants : activity.participants,
+                                                environment: !!environment ? environment : activity.environment,
+                                                category: event.target.value,
+                                            })
+                                        }}
+                                        placeholder="Category">
+                                        {/* <option defaultValue="">Choose the Category</option> */}
+                                        {categoryData.map((item, index) => {
+                                            return (
+                                                <option key={index} value={item.category}>{item.category}</option>
+                                            )
+                                        })}
+                                    </select> : activity.category}
+                                </td>
+                                <td>
+                                    {editActivityId === activity.id ? (
+                                        <button className="btn btn-outline btn-success btn btn-sm" onClick={() => handleUpdateActivityDraft({ id: activity.id, activityDraftToUpdate })}>
+                                            Save
+                                        </button>
+                                    ) : (
+                                        <button className="btn btn-outline btn-info btn btn-sm" onClick={() => handleEditButton(activity.id, i)}>
+                                            Edit
+                                        </button>
+                                    )}
+                                </td>
+                                <td>
+                                    {editActivityId === activity.id ? (
+                                        <button className="btn btn-outline btn-warning btn btn-sm" onClick={() => { handleCancelEdit({ activityIdx: i }) }}>
+                                            Cancel
+                                        </button>
+                                    ) : (
+                                        <button className="btn btn-outline btn-error btn btn-sm" onClick={() => handleDeleteButton(activity.id)}>
+                                            Delete
+                                        </button>
+                                    )}
+                                </td>
+                                <td>
+                                    <button className="btn btn-outline btn-secondary btn btn-sm" onClick={() => handlePublishActivity(activity.id)}>
+                                        Publish
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <div>
                 <Link to="/activities/create">
                     <button className="btn btn-outline btn-secondary btn">Create an activity!</button>
