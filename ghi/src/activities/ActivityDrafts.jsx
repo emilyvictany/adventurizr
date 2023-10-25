@@ -104,23 +104,26 @@ const ActivityDraftsPage = () => {
 
     const handlePublishActivity = async (activityId) => {
         console.log('activityId from handlePublishActivity: ', activityId)
-        const updateUrl = `${process.env.REACT_APP_API_HOST}/api/activities/${activityId}/publish`;
-        try {
-            await fetchWithToken(
-                updateUrl,
-                'PUT',
-                { 'Content-Type': 'application/json' },
-            );
-            await getUserDrafts();
-            setEditActivityId(null);
-        } catch (error) {
-            console.log('Error while publishing the activity: ', error);
+        const updateUrl = `${process.env.REACT_APP_API_HOST}/api/activities/${activityId}/publish`
+        const result = window.confirm("Confirmation: Publish activity?")
+        if (result) {
+            try {
+                await fetchWithToken(
+                    updateUrl,
+                    'PUT',
+                    { 'Content-Type': 'application/json' },
+                );
+                await getUserDrafts();
+                setEditActivityId(null);
+            } catch (error) {
+                console.log('Error while publishing the activity: ', error);
+            }
         }
     };
 
     const handleDeleteButton = async (activityId) => {
         const deleteUrl = `${process.env.REACT_APP_API_HOST}/api/activities/${activityId}`
-        const result = window.confirm("Are you sure you want to delete that activity?")
+        const result = window.confirm("Confirmation: Delete activity?")
         if (result) {
             try {
                 await fetchWithToken(

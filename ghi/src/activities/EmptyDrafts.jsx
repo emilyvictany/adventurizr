@@ -7,7 +7,7 @@ function EmptyDrafts() {
         <div>
             <h1>nothing here yet!</h1>
             <div>
-                <Link to="/activities">
+                <Link to="/activities/create">
                     <button className="btn btn-outline btn-secondary btn">Create an activity!</button>
                 </Link>
             </div>
