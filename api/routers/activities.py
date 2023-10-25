@@ -1,8 +1,15 @@
 from fastapi import (Depends, HTTPException, Response, APIRouter)
 from typing import Union, List
-from queries.activities import (ActivityIn, ActivityRepository, ActivityOut, Error, FilterIn, FilterOut)
 from jwtdown_fastapi.authentication import Optional
 from authenticator import authenticator
+from queries.activities import (
+    ActivityIn,
+    ActivityRepository,
+    ActivityOut,
+    Error,
+    FilterIn,
+    FilterOut
+)
 
 
 router = APIRouter()
@@ -11,7 +18,6 @@ router = APIRouter()
 @router.post("/api/activities/{user_id}", tags=["activities"], response_model=Union[ActivityOut, Error])
 def create_activity(
     activity: ActivityIn,
-    # user_id: int,
     response: Response,
     repo: ActivityRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
@@ -98,6 +104,24 @@ def update(
         print('info from update activity: ', info)
         updated_activity = repo.update(activity_id, info)
         return updated_activity
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=404, detail="Unable to update activity")
+
+
+@router.put(
+    "/api/activities/{activity_id}/publish",
+    tags=["activities"],
+    response_model=Union[ActivityOut, Error]
+)
+def publish(
+    activity_id: int,
+    repo: ActivityRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> ActivityOut:
+    try:
+        publish_activity = repo.publish(activity_id)
+        return publish_activity
     except Exception as e:
         print(e)
         raise HTTPException(status_code=404, detail="Unable to update activity")

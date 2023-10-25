@@ -54,7 +54,7 @@ function Nav() {
                         <NavLink className="nav-link" to="/favorites">Favorites</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/activities/filtered">Find an Adventure</NavLink>
+                        <NavLink className="nav-link" to="/activities">Find an Adventure</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/activities/create">Create An Activity</NavLink>

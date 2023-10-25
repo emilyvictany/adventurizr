@@ -21,6 +21,7 @@ class ActivityOut(BaseModel):
     participants: str
     environment: str
     category: str
+    published: Optional[bool]
     user_id: Optional[int]
 
 
@@ -231,3 +232,21 @@ class ActivityRepository:
         old_data = info.dict()
         old_data['id'] = id
         return ActivityOut(**old_data)
+
+    def publish(self, activity_id: int) -> Union[ActivityOut, Error]:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
+                    UPDATE activities
+                    SET published=%s
+                    WHERE id=%s
+                    RETURNING *
+                    """,
+                    [
+                        True,
+                        activity_id
+                    ]
+                )
+                record = result.fetchone()
+                return self.record_to_activity_out(record)

@@ -68,8 +68,7 @@ function ActivitySurveyForm() {
                         <option value="Select">Select</option>
                         <option value="Group">Group</option>
                         <option value="Duo">Duo</option>
-                        <option value="Just me">Just me</option>
-
+                        <option value="Just Me">Just Me</option>
                     </select>
                 </label>
             </div>
@@ -126,7 +125,6 @@ function ActivitySurveyForm() {
                 </tbody>
             </table>
         </div>
-
     );
 };
 
