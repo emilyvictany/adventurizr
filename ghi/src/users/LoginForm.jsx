@@ -3,10 +3,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useUser from '../hooks/useUser'
 
+
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const { token, login } = useToken();
+    const { login } = useToken();
     const navigate = useNavigate();
     const { saveUser } = useUser()
     const [error, setError] = useState(null);
@@ -16,32 +17,21 @@ const LoginForm = () => {
 
         try {
             await login(username, password);
-            await saveUser()
+            const user = await saveUser()
 
-            if (token) {
+            if (user) {
                 navigate("/home");
                 e.target.reset();
             } else {
                 setError("Login failed! Please check your username and password.");
             }
-
-
-            if (token) {
-                navigate("/home");
-                e.target.reset();
-            } else {
-                setError("Login failed! Please check your username and password.");
-            }
-
         } catch (err) {
             console.log('Error while logging in: ', err)
-            setError("Error occurred while logging in.");
             setError("Error occurred while logging in.");
         }
     };
 
     return (
-
         <div>
             <div className="min-h-screen flex">
                 <div className="flex-1 ... bg-lightorange">

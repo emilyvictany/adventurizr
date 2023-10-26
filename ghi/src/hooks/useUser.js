@@ -19,9 +19,11 @@ const useUser = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("data from saveUser: ", data);
-        localStorage.setItem("user", JSON.stringify(data.account));
+        const newUser = JSON.stringify(data.account);
+        localStorage.setItem("user", newUser);
         setUser(data.account);
+
+        return newUser
       }
     } catch (err) {
       console.log("Error while saving user: ", err);
