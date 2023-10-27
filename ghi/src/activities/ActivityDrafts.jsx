@@ -83,7 +83,6 @@ const ActivityDraftsPage = () => {
     };
 
     const handleUpdateActivityDraft = async ({ id: activityId, activityDraftToUpdate }) => {
-        console.log('activityDraftToUpdate from handleUpdateActivityDraft: ', activityDraftToUpdate)
         const updateUrl = `${process.env.REACT_APP_API_HOST}/api/activities/${activityId}`;
         try {
             await fetchWithToken(
@@ -102,7 +101,6 @@ const ActivityDraftsPage = () => {
     };
 
     const handlePublishActivity = async (activityId) => {
-        console.log('activityId from handlePublishActivity: ', activityId)
         const updateUrl = `${process.env.REACT_APP_API_HOST}/api/activities/${activityId}/publish`
         const result = window.confirm("Confirmation: Publish activity?")
         if (result) {

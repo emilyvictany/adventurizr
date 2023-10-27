@@ -9,11 +9,87 @@ A reflection on any design conversations that you had
 At least one ah-ha! moment that you had during your coding, however small
 
 Keep your journal in reverse chronological order. Always put new entries at the top. -->
+## October 26, 2023
+
+Today I worked on:
+
+* Today I cleaned up my gitlab and continued applying css styling to the landing page, user profile, and edit user profile page.
+
+## October 25, 2023
+
+Today I worked on:
+
+* Emily and I collaborated on the read me and docs. I helped Erin add a button to remove a recommended activity from our our filter suggestions component. I started styling the user profile components.
+
+## October 24, 2023
+
+Today I worked on:
+
+* debugging the login form, user profile, and helping Emily work on backend endpoints for one of her frontend features. I installed Tailwind and Daisy UI.
+
+I continued to try and protect our user homepage by debugging the login form by applying the custom hook that Emily created. I made a couple of changes to the Activity repo in the `filtered` query. I added the published field and set it to query search for `true`.
+
+## October 23, 2023
+
+Today I worked on:
+
+* completing the create an activity form and the delete functionality to my user profile.
+
+I created a frontend component that allows the user to create an activity recommendation that populates the application database. I created a delete user account frontend feature that allows users to delete their account.
+
+## October 20 - 22, 2023
+
+Today I worked on:
+
+* Lots of debugging. I tried to debug my login component and my edit user profile component. I also started the create an activity component.
+
+## October 19, 2023
+
+Today I worked on:
+
+* Worked on Unit Testing. Got my components for user profile working. I debugged backend endpoints with my teammates.
+
+Today I completed my unit test for the get_one endpoint for users. I had to install pytest and run the `python -m pytest` command in the fast-api docker container in my terminal.
+
+## October 18, 2023
+
+Today I worked on:
+
+* Spent a lot of time debugging my component and getting familiar with the jwt frontend auth package. Started the DELETE a user component.
+
+I ran into a few problems trying to manipulate the user data. I found it difficult to work with the auth frontend auth package provided. I am having difficulties figuring out how to refetch updated data that has been edited in the user profile.
+
+## October 17, 2023
+Today I worked on:
+
+* Starting the frontend component for visiting and editing a User's profile
+
+I created a frontend component for the edit user information feature. This allows the user the ability to change their account information if needed.
+I created a new component at ghi/src/users/EditUserProfile.jsx.
+
+## October 16, 2023
+
+Today I worked on:
+
+* Frontend Authorization for the Login component.
+
+I installed JWTdown for React to implement authentication on the frontend this works with JWTdown for FastAPI from the backend as JWTdown for React needs a service to retrieve a token from.I installed with `npm install @galvanize-inc/jwtdown-for-react`. I also added <AuthProvider> to App.js. I created a frontend component that allows the returning user to log their account information to get granted authorization to access all of the applications features. I created a form in ghi/src/users/LoginForm.jsx, I used the custom hook login included in the JWTdown packagE and I rendered a login form using react jsx.
+
+
+## October 13, 2023
+
+Today I worked on:
+
+* Addressing some edge cases that we want to potentially solve before deployment. Developed a plan of action to implement a solution for one particular edge case. I created new issues on the issue board relating to our frontend development. And lastly I started the frontend component for our login page.
+
 ## October 12, 2023
 
 Today I worked on:
 
-* Creating a DELETE endpoint for removing an activity from the activities data table
+* Creating a DELETE endpoint for removing an activity from the activities data table and a GET endpoint for getting a list of all favorites.
+
+Today I created a backend DELETE activity endpoint that allows the user to delete an activity in their activity draft logs that they no longer wish to publish. I added a function called delete to queries that is responsible for sending a query to the database to remove a specific activity from the table, effectively deleting it. I added a function called delete_activity to routers
+This function handles the DELETE request, allowing users to remove the activity from the data table. I created an endpoint in api/routers/favorites.py titled get_all and created a query in api/queries/favorites.py titled get_all_favorites. This backend endpoint that grabs all favorited instances created in the db table. This allows us to make sure that a "favorite" instance is being creating properly a allows to manipulate the favorites data in the frontend.
 
 ## October 11, 2023
 
