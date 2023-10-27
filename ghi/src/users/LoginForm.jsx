@@ -24,6 +24,7 @@ const LoginForm = () => {
                 e.target.reset();
             } else {
                 setError("Login failed! Please check your username and password.");
+                setTimeout(() => setError(), 5000);
             }
         } catch (err) {
             console.log('Error while logging in: ', err)
@@ -77,5 +78,6 @@ const LoginForm = () => {
         </div>
     );
 };
+
 
 export default LoginForm;

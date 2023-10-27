@@ -38,7 +38,7 @@ function DeleteUser() {
     };
 
     return (
-        <button className="btn btn-outline-danger mx-3" onClick={confirmDelete}>
+        <button className="btn btn-error btn-xs text-base-100" onClick={confirmDelete}>
             Delete Account
         </button>
     );

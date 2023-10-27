@@ -27,11 +27,14 @@ function Nav() {
     <div>
         <nav className="navbar bg-navred text-primary-content ">
             <div className="container-fluid">
-                <NavLink className="btn btn-ghost normal-case text-xl" to="/">Adventurizr</NavLink>
+                {token ? (
+                    <NavLink className="btn btn-ghost normal-case text-xl" to="/home">Adventurizr</NavLink>
+                ) : (
+                    <NavLink className="btn btn-ghost normal-case text-xl" to="/">Adventurizr</NavLink>
+                )}
             </div>
             {token ? (
             <div className="flex justify-end">
-                <div className="topnav"><NavLink className="link link-hover text-sm" to="/home">Home</NavLink></div>
                 <div className="topnav" ><NavLink className="link link-hover text-sm" to="/activities">Find an Adventure</NavLink></div>
                 <div className="topnav" ><NavLink className="link link-hover text-sm" to="/favorites">Favorites</NavLink></div>
                 <div className="topnav"><NavLink className="link link-hover text-sm" to="/activities/create">Create An Activity</NavLink></div>

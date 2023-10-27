@@ -1,6 +1,7 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState } from "react";
 import useUser from "../hooks/useUser";
+import { Typography } from "@material-tailwind/react";
 
 function EditUserProfile() {
     const { user } = useUser();
@@ -71,50 +72,84 @@ function EditUserProfile() {
 
 
     return (
-        <div>
-            <form onSubmit={handleEdit}>
-                <h1>Edit User Profile</h1>
-                <div>
-                    <div>
-                        <label>
-                            first name
-                        </label>
-                        <input name="first_name" value={firstName} onChange={handleFirstNameChange} placeholder={user?.first_name}/>
-                    </div>
-                    <div>
-                        <label>
-                            last name
-                        </label>
-                        <input name="last_name" value={lastName} onChange={handleLastNameChange} placeholder={user?.last_name}/>
-                    </div>
-                    <div>
-                        <label>
-                            username
-                        </label>
-                        <input name="username" value={username} onChange={handleUsernameChange} placeholder={user?.username}/>
-                    </div>
-                    <div>
-                        <label>
-                            email
-                        </label>
-                        <input name="email" value={email} onChange={handleEmailChange} placeholder={user?.email}/>
-                    </div>
-                    <div>
-                        <label>
-                            New password
-                        </label>
-                        <input name="password" value={password} onChange={handlePasswordChange} placeholder="enter new password"/>
-                    </div>
-                    <div>
-                        <button type="submit">Update</button>
+        <div className="w-screen">
+            <div className="min-h-screen flex">
+                <div className="w-2/5 justify-end bg-lightorange">
+                    <h1 className="pb-8 pt-6 flex justify-center text-3xl">User Profile</h1>
+                    <div className="flex-initial w-300 flex justify-center">
+                        <form onSubmit={handleEdit} id="edit-user-profile-form">
+                            <div className="mt-2 text-center">
+                                <br></br>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                        first name
+                                    </label>
+                                <div>
+                                    <input
+                                        name="first_name" value={firstName} onChange={handleFirstNameChange} placeholder={user?.first_name}
+                                        className="input input-sm input-bordered input-secondary w-full max-w-xs"
+                                    />
+                                </div>
+                                <br></br>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                        last name
+                                    </label>
+                                <div>
+                                    <input
+                                        name="last_name" value={lastName} onChange={handleLastNameChange} placeholder={user?.last_name}
+                                        className="input input-sm  input-bordered input-secondary w-full max-w-xs"
+                                    />
+                                </div>
+                                <br></br>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                        username
+                                    </label>
+                                <div>
+                                    <input
+                                        name="username" value={username} onChange={handleUsernameChange} placeholder={user?.username}
+                                        className="input input-sm  input-bordered input-secondary w-full max-w-xs"
+                                    />
+                                </div>
+                                <br></br>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                        email
+                                    </label>
+                                <div>
+                                    <input
+                                        name="email" value={email} onChange={handleEmailChange} placeholder={user?.email}
+                                        className="input input-sm input-bordered input-secondary w-full max-w-xs"
+                                    />
+                                </div>
+                                <br></br>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                        New password
+                                    </label>
+                                <div>
+                                    <input
+                                        name="password" value={password} onChange={handlePasswordChange} placeholder="enter new password"
+                                        className="input input-sm input-bordered input-secondary w-full max-w-xs"
+                                    />
+                                </div>
+                                <br></br>
+                                <div className="py-2 flex justify-center">
+                                    <button type="submit" className="btn btn-error btn text-base-100">Update</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
             {successMessage && (
                 <div className="alert alert-success" role="alert">
                     {successMessage}
                 </div>
             )}
+            <div>
+                <footer className="flex justify-center">
+                    <Typography color="blue-gray" className="font-normal">
+                        &copy; 2023 boredom busters
+                    </Typography>
+                </footer>
+            </div>
         </div>
     );
 };
