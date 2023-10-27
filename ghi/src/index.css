@@ -88,3 +88,10 @@ code {
   width: 300px;
   height: 150px;
 }
+
+.draft-table {
+  background: #47C3A5;
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: large
+}

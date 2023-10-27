@@ -140,15 +140,22 @@ const ActivityDraftsPage = () => {
     return (
         <div className='divspace'>
             <h1 className="divlargespace text-center text-2xl font-bold">Your Activity Drafts!</h1>
-            <br></br>
+
+            <div className="flex justify-center">
+            <div className="card shadow-xl">
+            <div className="card-body">
+
             <div className="overflow-x-auto ">
                 <table className="table">
-                    <thead>
+                    <thead className="draft-table">
                         <tr>
                             <th>Title</th>
                             <th>Participants</th>
                             <th>Environment</th>
                             <th>Category</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -156,7 +163,6 @@ const ActivityDraftsPage = () => {
                             <tr key={activity.id}>
                                 <td>{editActivityId === activity.id ?
                                     <input
-
                                         value={!!title ? title : activity.title}
                                         onChange={(event) => {
                                             console.log('activityDrafts[i]: ', activityDrafts[i])
@@ -272,7 +278,14 @@ const ActivityDraftsPage = () => {
                     </tbody>
                 </table>
             </div>
-            <div>
+
+            </div>
+            </div>
+            </div>
+
+            <br></br>
+            <br></br>
+            <div className="flex justify-center">
                 <Link to="/activities/create">
                     <button className="btn btn-outline btn-secondary btn">Create an activity!</button>
                 </Link>
