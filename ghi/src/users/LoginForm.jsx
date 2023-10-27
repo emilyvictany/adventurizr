@@ -33,42 +33,47 @@ const LoginForm = () => {
     };
 
     return (
-        <div>
+
+        <div className="w-screen">
             <div className="min-h-screen flex">
                 <div className="flex-1 ... bg-lightorange">
                     <div className="card text-bg-light mb-3 divspace">
                         <h5 className="text-red-500 text-2xl divspace">Login</h5>
                         <div className="card-body">
                             <form onSubmit={(e) => handleSubmit(e)}>
-                                <div className="mb-3">
-                                    <label className="form-label divspace">Username:</label>
-                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
-                                        <input
-                                            name="username"
-                                            type="text"
-                                            className="form-control input input-bordered input-error w-full max-w-xs"
-                                            onChange={(e) => setUsername(e.target.value)}
-                                        />
+                                <div className="pl-5">
+                                    <div className="mb-3">
+                                        <label className="block text-sm font-normal leading-6 text-gray-900 indent-3">Username</label>
+                                        <div className="flex w-full component-preview p-2 items-left justify-left gap-5 font-sans">
+                                            <input
+                                                name="username"
+                                                type="text"
+                                                className="input input-bordered input-error w-full max-w-xs"
+                                                onChange={(e) => setUsername(e.target.value)}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label divspace">Password:</label>
-                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
-                                        <input
-                                            name="password"
-                                            type="password"
-                                            className="form-control input input-bordered input-error w-full max-w-xs"
-                                            onChange={(e) => setPassword(e.target.value)}
-                                        />
+                                    <div className="mb-3">
+                                        <label className="block text-sm font-normal leading-6 text-gray-900 indent-3">Password</label>
+                                        <div className="flex w-full component-preview p-2 items-left justify-left gap-5 font-sans">
+                                            <input
+                                                name="password"
+                                                type="password"
+                                                className="form-control input input-bordered input-error w-full max-w-xs"
+                                                onChange={(e) => setPassword(e.target.value)}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                {error && (
-                                    <div className="alert alert-danger" role="alert">
-                                        {error}
+                                    {error && (
+                                        <div className="alert alert-danger" role="alert">
+                                            {error}
+                                        </div>
+                                    )}
+                                    <div className="flex w-full component-preview p-2 justify-right gap-5 font-sans">
+                                        <div className="ps-60 pt-6">
+                                            <input className="btn btn-error text-white" type="submit" value="Login" />
+                                        </div>
                                     </div>
-                                )}
-                                <div className="divspace">
-                                    <input className="btn btn-error text-white" type="submit" value="Login" />
                                 </div>
                             </form>
                         </div>

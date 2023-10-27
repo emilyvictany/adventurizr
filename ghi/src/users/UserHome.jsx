@@ -8,7 +8,7 @@ function UserHome() {
     const { user } = useUser()
 
     return (
-        <div>
+        <div className="w-screen">
             <div className="hero min-h-screen " style={{ backgroundImage: 'url(https://i.pinimg.com/564x/b6/f1/e1/b6f1e1222894d8ebe8edc2eb0573613c.jpg)' }}>
                 <div className="hero-overlay bg-opacity-0"></div>
                 <div className="hero-content text-center text-neutral-content">
@@ -48,36 +48,6 @@ function UserHome() {
                             className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
                         >
                             About Us
-                        </Typography>
-                    </li>
-                    <li>
-                        <Typography
-                            as="a"
-                            href="#"
-                            color="blue-gray"
-                            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
-                        >
-                            License
-                        </Typography>
-                    </li>
-                    <li>
-                        <Typography
-                            as="a"
-                            href="#"
-                            color="blue-gray"
-                            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
-                        >
-                            Contribute
-                        </Typography>
-                    </li>
-                    <li>
-                        <Typography
-                            as="a"
-                            href="#"
-                            color="blue-gray"
-                            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
-                        >
-                            Contact Us
                         </Typography>
                     </li>
                 </ul>

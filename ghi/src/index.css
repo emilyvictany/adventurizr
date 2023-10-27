@@ -46,6 +46,11 @@ body{
   padding: 4px;
 }
 
+
+.divcentermidspace {
+  padding: 45px;
+}
+
 h1 {
     color: black;
 }

@@ -44,7 +44,6 @@ class UserQueries:
                     [username],
                 )
                 account = result.fetchone()
-                print(f'fetched account for username {username} = {str(account)}')
                 if account is None:
                     return None
                 return UserOutWithPassword(

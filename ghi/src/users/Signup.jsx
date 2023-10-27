@@ -3,19 +3,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react"
 import { useNavigate } from "react-router-dom"
 import useUser from '../hooks/useUser'
 
-function InputForm(props) {
 
-    const { id, placeholder, value, onChange, type } = props;
-
-    return (
-        <div className="form-control">
-
-            <input value={value} onChange={onChange} required type={type} className="input input-bordered input-error w-full max-w-xs" id={id} placeholder={placeholder}></input>
-
-        </div>
-
-    )
-}
 
 const SignUpForm = () => {
     const [first_name, setFirstName] = useState('')
@@ -45,57 +33,59 @@ const SignUpForm = () => {
     }
 
     return (
-        <div>
+        <div className="w-screen">
             <div className="min-h-screen flex">
                 <div className="flex-1 ... bg-lightorange">
                     <div className="card text-bg-light mb-3 divspace">
                         <h5 className="text-red-500 text-2xl divspace" >Signup</h5>
                         <div className="card-body">
                             <form onSubmit={(e) => handleSubmit(e)}>
-                                <div className="divspace" >
-                                    <label htmlFor="first_name" className="form-label divspace">First name</label>
-                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
-                                        <InputForm
-                                            placeholder="first name"
+                                <div className="pl-5" >
+                                    <label className="block text-sm font-normal leading-6 text-gray-900 indent-3">First name</label>
+                                    <div className="flex w-full component-preview p-2 items-left justify-left gap-5 font-sans">
+                                        <input
                                             value={first_name}
                                             onChange={e => setFirstName(e.target.value)}
-                                            type="text" />
+                                            type="text"
+                                            className="input input-bordered input-error w-full max-w-xs" />
                                     </div>
-                                    <label htmlFor="last_name" className="form-label divspace">Last name</label>
-                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
-                                        <InputForm
-                                            placeholder="last name"
+                                    <label className="block text-sm font-normal leading-6 text-gray-900 indent-3">Last name</label>
+                                    <div className="flex w-full component-preview p-2 items-left justify-left gap-5 font-sans">
+                                        <input
                                             value={last_name}
                                             onChange={e => setLastName(e.target.value)}
-                                            type="text" />
+                                            type="text"
+                                            className="input input-bordered input-error w-full max-w-xs" />
                                     </div>
-                                    <label htmlFor="username" className="form-label divspace">Username</label>
-                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
-                                        <InputForm
-                                            placeholder="username"
+                                    <label className="block text-sm font-normal leading-6 text-gray-900 indent-3">Username</label>
+                                    <div className="flex w-full component-preview p-2 items-left justify-left gap-5 font-sans">
+                                        <input
                                             value={username}
                                             onChange={e => setUsername(e.target.value)}
-                                            type="text" />
+                                            type="text"
+                                            className="input input-bordered input-error w-full max-w-xs" />
                                     </div>
-                                    <label htmlFor="email" className="form-label divspace">Email</label>
-                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
-                                        <InputForm
-                                            placeholder="you@example.com"
+                                    <label className="block text-sm font-normal leading-6 text-gray-900 indent-3">Email</label>
+                                    <div className="flex w-full component-preview p-2 items-left justify-left gap-5 font-sans">
+                                        <input
                                             labelText="Email address"
                                             value={email}
                                             onChange={e => setEmail(e.target.value)}
-                                            type="email" />
+                                            type="email"
+                                            className="input input-bordered input-error w-full max-w-xs" />
                                     </div>
-                                    <label htmlFor="password" className="form-label divspace">Password</label>
-                                    <div className="flex w-full component-preview p-4 items-left justify-left gap-5 font-sans">
-                                        <InputForm
-                                            placeholder="password"
+                                    <label className="block text-sm font-normal leading-6 text-gray-900 indent-3">Password</label>
+                                    <div className="flex w-full component-preview p-2 items-left justify-left gap-5 font-sans">
+                                        <input
                                             value={password}
                                             onChange={e => setPassword(e.target.value)}
-                                            type="password" />
+                                            type="password"
+                                            className="input input-bordered input-error w-full max-w-xs" />
                                     </div>
-                                    <div className="divspace">
-                                        <input type="submit" className="btn btn-error text-white" value="Register" />
+                                    <div className="flex w-full component-preview p-2 items-left justify-right gap-5 font-sans">
+                                        <div className="ps-52 pt-6">
+                                            <input type="submit" className="btn btn-error text-white" value="Register" />
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -104,7 +94,6 @@ const SignUpForm = () => {
                 <div className="flex-1 ..."></div>
             </div>
         </div>
-
     )
 }
 
