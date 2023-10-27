@@ -46,13 +46,11 @@ function SingleUserFavorites() {
   };
 
   return (
-
     <div className="w-screen">
       <div>
         <h1 className="p-10 text-center text-2xl font-bold">Favorites</h1>
         <div>
           <div className="p-10 grid grid-rows-3 grid-cols-3 grid-flow-col-row gap-5 w-screen ">
-
             {favorites.map(favorite => {
               return (<div key={favorite.id}>
                 <div className="box-border pb-2 pr-2 bg-lightorange">
@@ -69,13 +67,10 @@ function SingleUserFavorites() {
               </div>
               )
             })}
-
           </div>
         </div >
       </div >
     </div>
-
-
   );
 }
 

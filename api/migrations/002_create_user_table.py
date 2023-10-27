@@ -1,4 +1,3 @@
-
 steps = [
     [
         # "Up" SQL statement

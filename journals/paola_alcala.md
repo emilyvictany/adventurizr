@@ -294,4 +294,3 @@ Emily and I set up our project database following the instructions on learn. We 
 
 
 Setting up our PostgreSQL helped me understand configuration a bit more in specific how the FastAPI service connects to the PostgreSQL database.
-
