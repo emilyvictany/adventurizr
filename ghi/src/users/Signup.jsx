@@ -11,6 +11,7 @@ const SignUpForm = () => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState(null);
 
     const { register } = useToken()
     const navigate = useNavigate()
@@ -24,12 +25,22 @@ const SignUpForm = () => {
             username: username,
             email: email,
             password: password,
-
         }
-        await register(accountData, `${process.env.REACT_APP_API_HOST}/api/users`);
-        await saveUser()
-        e.target.reset()
-        navigate("/home")
+
+        try {
+            await register(accountData, `${process.env.REACT_APP_API_HOST}/api/users`);
+            const user = await saveUser()
+            if (user) {
+                navigate("/home");
+                e.target.reset();
+            } else {
+                setError("Sign up failed!");
+                setTimeout(() => setError(), 5000);
+            }
+        } catch (err) {
+            console.log('Error while signing in: ', err)
+            setError("Error occurred while signing in.");
+        }
     }
 
     return (
@@ -37,7 +48,7 @@ const SignUpForm = () => {
             <div className="min-h-screen flex">
                 <div className="flex-1 ... bg-lightorange">
                     <div className="card text-bg-light mb-3 divspace">
-                        <h5 className="text-red-500 text-2xl divspace" >Signup</h5>
+                        <h5 className="text-red-500 text-2xl divspace">Signup</h5>
                         <div className="card-body">
                             <form onSubmit={(e) => handleSubmit(e)}>
                                 <div className="pl-5" >
@@ -82,11 +93,17 @@ const SignUpForm = () => {
                                             type="password"
                                             className="input input-bordered input-error w-full max-w-xs" />
                                     </div>
+
                                     <div className="flex w-full component-preview p-2 items-left justify-right gap-5 font-sans">
                                         <div className="ps-52 pt-6">
                                             <input type="submit" className="btn btn-error text-white" value="Register" />
                                         </div>
                                     </div>
+                                    {error && (
+                                        <div className="alert alert-danger" role="alert">
+                                            {error}
+                                        </div>
+                                    )}
                                 </div>
                             </form>
                         </div>
