@@ -30,7 +30,7 @@ function DeleteUser() {
                 logout();
                 navigate("/");
             } else {
-
+                console.log(response);
             }
         } catch (error) {
             console.error("Could not delete user account: ", error);

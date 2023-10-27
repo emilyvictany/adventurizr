@@ -33,7 +33,7 @@ function EditUserProfile() {
             },
             body: JSON.stringify(data),
         });
-        
+        console.log("edit data:", data)
         if (response.ok) {
             setSuccessMessage("Changes were successfully made!");
 
@@ -80,9 +80,9 @@ function EditUserProfile() {
                         <form onSubmit={handleEdit} id="edit-user-profile-form">
                             <div className="mt-2 text-center">
                                 <br></br>
-                                <label className="block text-sm font-medium leading-6 text-gray-900">
-                                    first name
-                                </label>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                        first name
+                                    </label>
                                 <div>
                                     <input
                                         name="first_name" value={firstName} onChange={handleFirstNameChange} placeholder={user?.first_name}
@@ -90,9 +90,9 @@ function EditUserProfile() {
                                     />
                                 </div>
                                 <br></br>
-                                <label className="block text-sm font-medium leading-6 text-gray-900">
-                                    last name
-                                </label>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                        last name
+                                    </label>
                                 <div>
                                     <input
                                         name="last_name" value={lastName} onChange={handleLastNameChange} placeholder={user?.last_name}
@@ -100,9 +100,9 @@ function EditUserProfile() {
                                     />
                                 </div>
                                 <br></br>
-                                <label className="block text-sm font-medium leading-6 text-gray-900">
-                                    username
-                                </label>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                        username
+                                    </label>
                                 <div>
                                     <input
                                         name="username" value={username} onChange={handleUsernameChange} placeholder={user?.username}
@@ -110,9 +110,9 @@ function EditUserProfile() {
                                     />
                                 </div>
                                 <br></br>
-                                <label className="block text-sm font-medium leading-6 text-gray-900">
-                                    email
-                                </label>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                        email
+                                    </label>
                                 <div>
                                     <input
                                         name="email" value={email} onChange={handleEmailChange} placeholder={user?.email}
@@ -120,9 +120,9 @@ function EditUserProfile() {
                                     />
                                 </div>
                                 <br></br>
-                                <label className="block text-sm font-medium leading-6 text-gray-900">
-                                    New password
-                                </label>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                        New password
+                                    </label>
                                 <div>
                                     <input
                                         name="password" value={password} onChange={handlePasswordChange} placeholder="enter new password"

@@ -101,6 +101,7 @@ def update(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> ActivityOut:
     try:
+        print('info from update activity: ', info)
         updated_activity = repo.update(activity_id, info)
         return updated_activity
     except Exception as e:

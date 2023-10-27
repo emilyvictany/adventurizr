@@ -85,6 +85,7 @@ class UserQueries:
                     ],
                 )
                 account = result.fetchone()
+                print(account[4])
                 return UserOutWithPassword(
                     id=account[0],
                     first_name=account[1],

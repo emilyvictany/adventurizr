@@ -56,6 +56,7 @@ function CreateActivityForm() {
             },
             body: JSON.stringify(data),
         });
+        console.log("post data", data);
 
 
         if (response.ok) {
