@@ -1,5 +1,5 @@
 # Adventurizr
-Check out our deployed site here: [Adventurizr](boredom-busters.gitlab.io/adventurizr)
+Check out our deployed site here: https://boredom-busters.gitlab.io/adventurizr/
 
 ## Team
 
