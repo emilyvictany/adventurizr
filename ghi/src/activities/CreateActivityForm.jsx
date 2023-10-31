@@ -58,6 +58,9 @@ function CreateActivityForm() {
         });
         console.log("post data", data);
 
+        if (!token) {
+            navigate("/create/login_error");
+        }
 
         if (response.ok) {
             setTitle('');

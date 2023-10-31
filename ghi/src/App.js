@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import Nav from "./Nav";
-import LandingPage from "./LandingPage";
+import LandingPage from "./other/LandingPage";
 import UserHome from "./users/UserHome";
 import LoginForm from "./users/LoginForm";
 import SignUpForm from "./users/Signup";
@@ -14,6 +14,8 @@ import DeleteUser from "./users/DeleteUser";
 import EditUserProfile from "./users/EditUserProfile";
 import EmptyDrafts from "./activities/EmptyDrafts";
 import EmptyFavorites from "./favorites/EmptyFavorites";
+import LoginError from "./other/LoginError";
+import ErrorPage from "./other/ErrorPage";
 
 function App() {
   const domain = /https:\/\/[^/]+/
@@ -30,11 +32,13 @@ function App() {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/home" element={<UserHome />} />
+            <Route path="/login_error" element={<LoginError />} />
 
             <Route path="/user">
               <Route index element={<UserProfile />} />
               <Route path="delete" element={<DeleteUser />} />
               <Route path="edit" element={<EditUserProfile />} />
+              <Route path="login_error" element={<LoginError />} />
             </Route>
 
             <Route path="/activities">
@@ -42,12 +46,16 @@ function App() {
               <Route path="drafts" element={<ActivityDrafts />} />
               <Route path="drafts/empty" element={<EmptyDrafts />} />
               <Route path="create" element={<CreateActivityForm />} />
+              <Route path="login_error" element={<LoginError />} />
             </Route>
 
             <Route path="/favorites">
               <Route index element={<SingleUserFavorites />} />
-              <Route path="empty" element={<EmptyFavorites />}/>
+              <Route path="empty" element={<EmptyFavorites />} />
+              <Route path="login_error" element={<LoginError />} />
             </Route>
+
+            <Route path="/error" element={<ErrorPage />} />
           </Routes>
         </div>
       </AuthProvider>

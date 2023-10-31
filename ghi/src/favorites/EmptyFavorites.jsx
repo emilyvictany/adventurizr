@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function EmptyFavorites() {
 
     return (
-        <div className="divspace">
+        <div className="divspace flex flex-col items-center justify-center w-screen">
             <h1 className="divlargespace text-center text-2xl font-bold">Favorites</h1>
             <div className="flex justify-center">
                 <div className="card w-96 bg-base-100 shadow-xl">
