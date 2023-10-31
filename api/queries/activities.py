@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional, List, Union
+import random
 from queries.pool import pool
 
 
@@ -147,6 +148,7 @@ class ActivityRepository:
                     ]
                 )
                 activities = result.fetchall()
+                random.shuffle(activities)
                 filtered_activities = []
                 for record in activities:
                     activity = FilterOut(
