@@ -2,7 +2,6 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState, useEffect } from "react";
 import useUser from "../hooks/useUser";
 import { Typography } from "@material-tailwind/react";
-import { useNavigate } from "react-router-dom";
 import LoginError from "../other/ErrorPage";
 
 function EditUserProfile() {
