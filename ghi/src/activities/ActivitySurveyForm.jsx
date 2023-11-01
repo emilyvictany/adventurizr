@@ -2,9 +2,9 @@ import { useState, useCallback, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
 import { Link, useNavigate } from 'react-router-dom';
-import mountains from "../images/mountains.png"
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../lotties/camping.json";
+import mountains from "../images/mountains.png"
 
 
 function ActivitySurveyForm() {
