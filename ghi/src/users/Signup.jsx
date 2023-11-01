@@ -2,7 +2,8 @@ import { useState } from 'react';
 import useToken from "@galvanize-inc/jwtdown-for-react"
 import { useNavigate } from "react-router-dom"
 import useUser from '../hooks/useUser'
-
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from "../lotties/adventure.json";
 
 
 const SignUpForm = () => {
@@ -109,6 +110,11 @@ const SignUpForm = () => {
                         </div>
                     </div></div>
                 <div className="flex-1 ..."></div>
+                <div className="flex-none pt-44 pl-40">
+                    <div className="h-1/3 w-1/3 login150-pic js-tilt">
+                        <Player src={animationData} loop autoplay />
+                    </div>
+                </div>
             </div>
         </div>
     )
