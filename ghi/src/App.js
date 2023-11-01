@@ -38,7 +38,6 @@ function App() {
               <Route index element={<UserProfile />} />
               <Route path="delete" element={<DeleteUser />} />
               <Route path="edit" element={<EditUserProfile />} />
-              <Route path="login_error" element={<LoginError />} />
             </Route>
 
             <Route path="/activities">
@@ -46,13 +45,11 @@ function App() {
               <Route path="drafts" element={<ActivityDrafts />} />
               <Route path="drafts/empty" element={<EmptyDrafts />} />
               <Route path="create" element={<CreateActivityForm />} />
-              <Route path="login_error" element={<LoginError />} />
             </Route>
 
             <Route path="/favorites">
               <Route index element={<SingleUserFavorites />} />
               <Route path="empty" element={<EmptyFavorites />} />
-              <Route path="login_error" element={<LoginError />} />
             </Route>
 
             <Route path="/error" element={<ErrorPage />} />

@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import DeleteUser from "./DeleteUser";
 import useUser from "../hooks/useUser";
 import { Typography } from "@material-tailwind/react";
+import LoginError from "../other/LoginError";
 
 function UserProfile() {
     const { user } = useUser()
@@ -10,6 +12,12 @@ function UserProfile() {
         e.preventDefault();
         navigate("/user/edit");
     }
+
+    useEffect(() => {
+        if (!user) {
+            return <LoginError />
+        }
+    }, [user, navigate])
 
     return (
         <div className="w-screen">
