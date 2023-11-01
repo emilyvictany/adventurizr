@@ -143,7 +143,7 @@ const ActivityDraftsPage = () => {
     };
 
     return (
-        <div className='divspace'>
+        <div className="divspace flex flex-col items-center justify-center w-screen">
             <h1 className="divlargespace text-center text-2xl font-bold">Your Activity Drafts!</h1>
 
             <div className="flex justify-center">

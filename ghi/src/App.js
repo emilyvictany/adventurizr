@@ -52,7 +52,7 @@ function App() {
               <Route path="empty" element={<EmptyFavorites />} />
             </Route>
 
-            <Route path="/error" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </div>
       </AuthProvider>

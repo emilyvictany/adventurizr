@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import DeleteUser from "./DeleteUser";
 import useUser from "../hooks/useUser";
 import { Typography } from "@material-tailwind/react";
-import LoginError from "../other/LoginError";
 
 function UserProfile() {
     const { user } = useUser()
