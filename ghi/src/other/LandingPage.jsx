@@ -28,7 +28,7 @@ function LandingPage() {
                     </p>
                 </div >
             </div>
-            <footer className="flex justify-center">
+            <footer className="flex justify-center bg-lightorange">
                 <Typography color="blue-gray" className="font-normal">
                     &copy; 2023 boredom busters
                 </Typography>

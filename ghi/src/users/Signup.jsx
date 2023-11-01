@@ -2,7 +2,8 @@ import { useState } from 'react';
 import useToken from "@galvanize-inc/jwtdown-for-react"
 import { useNavigate, Link } from "react-router-dom"
 import useUser from '../hooks/useUser'
-
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from "../lotties/adventure.json";
 
 
 const SignUpForm = () => {
@@ -79,7 +80,7 @@ const SignUpForm = () => {
                                     <label className="block text-sm font-normal leading-6 text-gray-900 indent-3">Email</label>
                                     <div className="flex w-full component-preview p-2 items-left justify-left gap-5 font-sans">
                                         <input
-                                            labelText="Email address"
+                                            labeltext="Email address"
                                             value={email}
                                             onChange={e => setEmail(e.target.value)}
                                             type="email"
@@ -119,6 +120,11 @@ const SignUpForm = () => {
                         </div>
                     </div></div>
                 <div className="flex-1 ..."></div>
+                <div className="flex-none pt-44 pl-40">
+                    <div className="h-1/3 w-1/3 login150-pic js-tilt">
+                        <Player src={animationData} loop autoplay />
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -2,6 +2,8 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useUser from '../hooks/useUser'
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from "../lotties/explore.json";
 
 
 const LoginForm = () => {
@@ -89,6 +91,11 @@ const LoginForm = () => {
                         </div>
                     </div></div>
                 <div className="flex-1 ..."></div>
+                <div className="flex-none pl-40">
+                    <div className="h-2/5 w-2/5 login150-pic js-tilt">
+                        <Player src={animationData} loop autoplay />
+                    </div>
+                </div>
             </div>
         </div>
     );

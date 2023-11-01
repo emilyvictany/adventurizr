@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from "../lotties/paper-airplane.json";
 
 
 function CreateActivityForm() {
@@ -37,6 +39,12 @@ function CreateActivityForm() {
         { category: 'Sports and Recreation' },
     ];
 
+    useEffect(() => {
+        if (!user) {
+            navigate("/login_error");
+        }
+    }, [user, navigate])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -57,7 +65,6 @@ function CreateActivityForm() {
             body: JSON.stringify(data),
         });
         console.log("post data", data);
-
 
         if (response.ok) {
             setTitle('');
@@ -146,7 +153,12 @@ function CreateActivityForm() {
                         </div>
                     </div>
                 </div>
-            </div >
+                <div className="place-content-start">
+                    <div className="object-scale-down h-48 w-96 login100-pic js-tilt">
+                        <Player src={animationData} loop autoplay />
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

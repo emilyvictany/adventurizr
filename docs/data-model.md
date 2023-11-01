@@ -1,6 +1,6 @@
 # Data Models
 
-<img src="https://miro.medium.com/v2/resize:fit:1400/1*ei_Ce5ZqUHkhF9N1oku3Hg.gif" width="400" height="300"/>
+<img src="https://images.squarespace-cdn.com/content/v1/628c9b924f65903f0418db60/bd05f38d-27ab-4032-9a24-10e266026ed9/data-model.gif" width="300" height="250"/>
 
 ## Users
 

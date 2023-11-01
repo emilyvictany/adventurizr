@@ -1,7 +1,8 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useUser from "../hooks/useUser";
 import { Typography } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
 
 function EditUserProfile() {
     const { user } = useUser();
@@ -12,6 +13,13 @@ function EditUserProfile() {
     const [email, setEmail] = useState(user?.email || '');
     const [password, setPassword] = useState('');
     const [successMessage, setSuccessMessage] = useState();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/login_error");
+        }
+    }, [user, navigate])
 
     const handleEdit = async (e) => {
         e.preventDefault();

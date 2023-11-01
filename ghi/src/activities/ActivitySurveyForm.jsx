@@ -1,11 +1,13 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import mountains from "../images/mountains.png"
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from "../lotties/camping.json";
 
 
 function ActivitySurveyForm() {
-
     const [participants, setParticipants] = useState('');
     const [environment, setEnvironment] = useState('');
     const [category, setCategory] = useState('');
@@ -14,7 +16,13 @@ function ActivitySurveyForm() {
     const [noMatchesError, setNoMatchesError] = useState('');
     const { token } = useToken()
     const { user } = useUser()
+    const { navigate } = useNavigate()
 
+    useEffect(() => {
+        if (!user) {
+            navigate("/login_error");
+        }
+    }, [user, navigate])
 
     const fetchFilteredActivities = async (participants, environment, category) => {
         try {
@@ -65,8 +73,6 @@ function ActivitySurveyForm() {
         }
     }, [user?.id])
 
-
-
     const removeActivity = (activityId) => {
         setFilteredActivities((prevActivities) =>
             prevActivities.filter((activity) => activity.id !== activityId)
@@ -76,6 +82,7 @@ function ActivitySurveyForm() {
     return (
         <div className="w-screen">
             <div >
+
                 <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Let's Find an Adventure!</h1>
                 <div className="grid grid-cols-4 gap-5 w-screen h-36 flex-grow rounded-box divcentermidspace">
                     <div>
@@ -118,7 +125,9 @@ function ActivitySurveyForm() {
                         <button onClick={handleFilter} className=" btn btn-error btn-wide text-white">Filter</button>
                     </div>
                 </div >
+
                 <div>
+                    <img src={mountains} className="h-[375px] mb-20" alt="Logo" />
                     <div>
                         <div className=" grid gap-4 grid-cols-3 grid-rows-3 m-11">
                             {filteredActivities.map(activity => {
@@ -142,10 +151,10 @@ function ActivitySurveyForm() {
                                 </div>
                                 )
                             })}
-
                         </div>
                     </div >
                 </div >
+
             </div >
             <div className="justify-center">
                 <div className="text-center text-xl">
@@ -165,15 +174,16 @@ function ActivitySurveyForm() {
                         </div>
                     )}
                 </div>
+                <div className="flex-none">
+                    {(noMatchesError || filteredActivities.length === 0) && (
+                        <div className="h-1/3 w-1/3 login150-pic js-tilt">
+                            <Player src={animationData} loop autoplay />
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
 };
-
-
-
-
-
-
 
 export default ActivitySurveyForm
