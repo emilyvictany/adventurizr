@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from "../lotties/picnic-animation.json";
 
 function SingleUserFavorites() {
   const [favorites, setUserFavorites] = useState([])
@@ -53,9 +55,9 @@ function SingleUserFavorites() {
   return (
     <div className="w-screen">
       <div>
-        <h1 className="p-10 text-center text-2xl font-bold">Favorites</h1>
+        <h1 className="pt-10 pl-10 pr-10text-center text-2xl font-bold">Favorites</h1>
         <div>
-          <div className="p-10 grid grid-rows-3 grid-cols-3 grid-flow-col-row gap-5 w-screen ">
+          <div className="pt-10 pl-10 pr-10 grid grid-rows-3 grid-cols-3 grid-flow-col-row gap-5 w-screen ">
             {favorites.map(favorite => {
               return (<div key={favorite.id}>
                 <div className="box-border pb-2 pr-2 bg-lightorange">
@@ -73,8 +75,13 @@ function SingleUserFavorites() {
               )
             })}
           </div>
-        </div >
-      </div >
+          <div className="pb-10 flex-none">
+            <div className="h-2/5 w-2/5 login150-pic js-tilt">
+              <Player src={animationData} loop autoplay />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

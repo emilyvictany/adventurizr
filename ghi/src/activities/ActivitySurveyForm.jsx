@@ -3,6 +3,8 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
 import { Link, useNavigate } from 'react-router-dom';
 import mountains from "../images/mountains.png"
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from "../lotties/camping.json";
 
 
 function ActivitySurveyForm() {
@@ -174,6 +176,13 @@ function ActivitySurveyForm() {
                                     <button className="btn btn-outline btn-secondary">Create one</button>
                                 </Link>
                             </div>
+                        </div>
+                    )}
+                </div>
+                <div className="flex-none">
+                    {(noMatchesError || filteredActivities.length === 0) && (
+                        <div className="h-1/3 w-1/3 login150-pic js-tilt">
+                            <Player src={animationData} loop autoplay />
                         </div>
                     )}
                 </div>
