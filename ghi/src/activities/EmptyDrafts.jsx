@@ -1,16 +1,20 @@
 import React, { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import useUser from "../hooks/useUser";
+import ErrorPage from "../other/ErrorPage";
 
 function EmptyDrafts() {
-    const { user } = useUser();
-    const navigate = useNavigate();
+    const { user, saveUser } = useUser();
 
     useEffect(() => {
         if (!user) {
-            navigate("/login_error");
+            saveUser();
         }
-    }, [user, navigate])
+    }, [user, saveUser]);
+
+    if (!user) {
+        return <ErrorPage to="/login_error" />;
+    }
 
     return (
         <div className="divspace flex flex-col items-center justify-center w-screen">

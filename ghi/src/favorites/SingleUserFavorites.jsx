@@ -4,11 +4,12 @@ import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../lotties/picnic-animation.json";
+import ErrorPage from "../other/ErrorPage";
 
 function SingleUserFavorites() {
   const [favorites, setUserFavorites] = useState([])
   const { fetchWithToken } = useToken();
-  const { user } = useUser()
+  const { user, saveUser } = useUser()
   const navigate = useNavigate();
 
   const getUserFavorites = useCallback(async () => {
@@ -35,9 +36,9 @@ function SingleUserFavorites() {
 
   useEffect(() => {
     if (!user) {
-      navigate("/login_error");
+      saveUser();
     }
-  }, [user, navigate])
+  }, [user, saveUser]);
 
   const handleDeleteButtonClick = async (activityId) => {
     const deleteUrl = `${process.env.REACT_APP_API_HOST}/api/favorites/${user?.id}/${activityId}`;
@@ -51,6 +52,10 @@ function SingleUserFavorites() {
       console.log('Error while deleting a favorite: ', error)
     }
   };
+
+  if (!user) {
+    return <ErrorPage to="/login_error" />;
+  }
 
   return (
     <div className="w-screen">
