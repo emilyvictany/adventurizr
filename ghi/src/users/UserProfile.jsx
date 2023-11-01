@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import DeleteUser from "./DeleteUser";
 import useUser from "../hooks/useUser";
-import { Typography } from "@material-tailwind/react";
+import mountains from "../images/mountains.png";
+
 
 function UserProfile() {
     const { user } = useUser()
@@ -68,9 +69,10 @@ function UserProfile() {
                             <DeleteUser user={user} />
                         </div>
                     </div>
-                </div>
-            </div>
 
+                </div>
+
+            </div>
         </div>
     );
 }
