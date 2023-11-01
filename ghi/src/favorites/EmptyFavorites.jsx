@@ -1,7 +1,16 @@
-import React from "react"
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom";
+import useUser from "../hooks/useUser";
 
 function EmptyFavorites() {
+    const { user } = useUser();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/login_error");
+        }
+    }, [user, navigate])
 
     return (
         <div className="divspace flex flex-col items-center justify-center w-screen">

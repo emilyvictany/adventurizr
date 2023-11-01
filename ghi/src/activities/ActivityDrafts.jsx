@@ -40,6 +40,12 @@ const ActivityDraftsPage = () => {
     }, [user?.id, navigate]);
 
     useEffect(() => {
+        if (!user) {
+            navigate("/login_error");
+        }
+    }, [user, navigate])
+
+    useEffect(() => {
         if (user) {
             getUserDrafts();
         }

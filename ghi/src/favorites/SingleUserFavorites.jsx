@@ -31,6 +31,11 @@ function SingleUserFavorites() {
     }
   }, [getUserFavorites, user]);
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/login_error");
+    }
+  }, [user, navigate])
 
   const handleDeleteButtonClick = async (activityId) => {
     const deleteUrl = `${process.env.REACT_APP_API_HOST}/api/favorites/${user?.id}/${activityId}`;

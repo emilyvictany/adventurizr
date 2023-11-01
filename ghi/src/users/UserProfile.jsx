@@ -15,7 +15,7 @@ function UserProfile() {
 
     useEffect(() => {
         if (!user) {
-            return <LoginError />
+            navigate("/login_error");
         }
     }, [user, navigate])
 

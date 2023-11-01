@@ -1,6 +1,7 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 
 function ActivitySurveyForm() {
@@ -11,7 +12,13 @@ function ActivitySurveyForm() {
     const [filteredActivities, setFilteredActivities] = useState([]);
     const { token } = useToken()
     const { user } = useUser()
+    const { navigate } = useNavigate()
 
+    useEffect(() => {
+        if (!user) {
+            navigate("/login_error");
+        }
+    }, [user, navigate])
 
     const fetchFilteredActivities = async (participants, environment, category) => {
         try {

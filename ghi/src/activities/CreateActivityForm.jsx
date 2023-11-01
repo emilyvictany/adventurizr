@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
@@ -37,6 +37,12 @@ function CreateActivityForm() {
         { category: 'Sports and Recreation' },
     ];
 
+    useEffect(() => {
+        if (!user) {
+            navigate("/login_error");
+        }
+    }, [user, navigate])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -57,10 +63,6 @@ function CreateActivityForm() {
             body: JSON.stringify(data),
         });
         console.log("post data", data);
-
-        if (!token) {
-            navigate("/create/login_error");
-        }
 
         if (response.ok) {
             setTitle('');
