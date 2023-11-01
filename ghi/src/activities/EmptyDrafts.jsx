@@ -11,7 +11,7 @@ function EmptyDrafts() {
             navigate("/login_error");
         }
     }, [user, navigate])
-    
+
     return (
         <div className="divspace flex flex-col items-center justify-center w-screen">
             <h1 className="divlargespace text-center text-2xl font-bold">Your Activity Drafts</h1>
@@ -27,10 +27,11 @@ function EmptyDrafts() {
             <br></br>
             <div className="flex justify-center">
                 <Link to="/activities/create">
-                    <button className="btn btn-outline btn-secondary btn">Create an activity!</button>
+                    <button className="btn btn-outline btn-secondary btn">Create an activity</button>
                 </Link>
             </div>
         </div>
     )
 }
+
 export default EmptyDrafts;

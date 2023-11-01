@@ -8,7 +8,6 @@ import animationData from "../lotties/camping.json";
 
 
 function ActivitySurveyForm() {
-
     const [participants, setParticipants] = useState('');
     const [environment, setEnvironment] = useState('');
     const [category, setCategory] = useState('');
@@ -73,8 +72,6 @@ function ActivitySurveyForm() {
             console.log('Error while getting user favorites: ', error)
         }
     }, [user?.id])
-
-
 
     const removeActivity = (activityId) => {
         setFilteredActivities((prevActivities) =>
@@ -154,12 +151,10 @@ function ActivitySurveyForm() {
                                 </div>
                                 )
                             })}
-
-
                         </div>
-
                     </div >
                 </div >
+
             </div >
             <div className="justify-center">
                 <div className="text-center text-xl">
@@ -190,11 +185,5 @@ function ActivitySurveyForm() {
         </div>
     );
 };
-
-
-
-
-
-
 
 export default ActivitySurveyForm

@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import DeleteUser from "./DeleteUser";
 import useUser from "../hooks/useUser";
-import mountains from "../images/mountains.png";
 
 
 function UserProfile() {
