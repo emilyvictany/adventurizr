@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import DeleteUser from "./DeleteUser";
 import useUser from "../hooks/useUser";
-import { Typography } from "@material-tailwind/react";
+import mountains from "../images/mountains.png";
+
 
 function UserProfile() {
     const { user } = useUser()
@@ -32,11 +33,11 @@ function UserProfile() {
                                 </svg>
                             </div>
                         </div>
-                        <div className="flex justify-center overflow-x-auto h-96">
-                            <table className="table">
+                        <div className="flex justify-center overflow-x-auto h-96 pl-16 pr-16">
+                            <table className="table ">
                                 <thead>
                                     <tr>
-                                        <th>First name:</th>
+                                        <th >First name:</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,18 +72,13 @@ function UserProfile() {
                         <div className="pt-12 flex justify-center pl-30">
                             <button onClick={editButton} className="btn btn-error btn text-base-100" type="button">Edit</button>
                         </div>
-                        <div className="pt-28 flex justify-center">
+                        <div className="pt-14 flex justify-center pb-10">
                             <DeleteUser user={user} />
                         </div>
                     </div>
+
                 </div>
-            </div>
-            <div>
-                <footer className="flex justify-center">
-                    <Typography color="blue-gray" className="font-normal">
-                        &copy; 2023 boredom busters
-                    </Typography>
-                </footer>
+
             </div>
         </div>
     );

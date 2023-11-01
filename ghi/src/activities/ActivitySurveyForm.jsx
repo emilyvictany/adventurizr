@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
 import { Link, useNavigate } from 'react-router-dom';
+import mountains from "../images/mountains.png"
 
 
 function ActivitySurveyForm() {
@@ -82,6 +83,7 @@ function ActivitySurveyForm() {
     return (
         <div className="w-screen">
             <div >
+
                 <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Let's Find an Adventure!</h1>
                 <div className="grid grid-cols-4 gap-5 w-screen h-36 flex-grow rounded-box divcentermidspace">
                     <div>
@@ -124,7 +126,9 @@ function ActivitySurveyForm() {
                         <button onClick={handleFilter} className=" btn btn-error btn-wide text-white">Filter</button>
                     </div>
                 </div >
+
                 <div>
+                    <img src={mountains} className="h-[375px] mb-20" alt="Logo" />
                     <div>
                         <div className=" grid gap-4 grid-cols-3 grid-rows-3 m-11">
                             {filteredActivities.map(activity => {
@@ -149,7 +153,9 @@ function ActivitySurveyForm() {
                                 )
                             })}
 
+
                         </div>
+
                     </div >
                 </div >
             </div >
