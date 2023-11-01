@@ -2,6 +2,8 @@ import { useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from "../lotties/paper-airplane.json";
 
 
 function CreateActivityForm() {
@@ -146,7 +148,12 @@ function CreateActivityForm() {
                         </div>
                     </div>
                 </div>
-            </div >
+                <div className="place-content-start">
+                    <div className="object-scale-down h-48 w-96 login100-pic js-tilt">
+                        <Player src={animationData} loop autoplay />
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
