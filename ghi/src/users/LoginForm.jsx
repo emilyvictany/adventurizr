@@ -1,6 +1,6 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import useUser from '../hooks/useUser'
 
 
@@ -74,6 +74,16 @@ const LoginForm = () => {
                                             <input className="btn btn-error text-white" type="submit" value="Login" />
                                         </div>
                                     </div>
+
+                                    <br></br>
+                                    <div className="text-left">
+                                        <p className="lightblack-txt">Don't have an account?
+                                            <Link className="divsmallspace" to="/signup">
+                                                <button className="link link-error">Sign Up</button>
+                                            </Link>
+                                        </p>
+                                    </div>
+
                                 </div>
                             </form>
                         </div>
