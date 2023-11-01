@@ -78,8 +78,8 @@ const LoginForm = () => {
                                     </div>
 
                                     <br></br>
-                                    <div className="text-left">
-                                        <p className="lightblack-txt">Don't have an account?
+                                    <div>
+                                        <p className="lightblack-txt text-center">Don't have an account?
                                             <Link className="divsmallspace" to="/signup">
                                                 <button className="link link-error">Sign Up</button>
                                             </Link>
