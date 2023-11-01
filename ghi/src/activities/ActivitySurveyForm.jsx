@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
 
 function ActivitySurveyForm() {
@@ -10,6 +10,8 @@ function ActivitySurveyForm() {
     const [environment, setEnvironment] = useState('');
     const [category, setCategory] = useState('');
     const [filteredActivities, setFilteredActivities] = useState([]);
+    const [error, setError] = useState(null);
+    const [noMatchesError, setNoMatchesError] = useState('');
     const { token } = useToken()
     const { user } = useUser()
     const { navigate } = useNavigate()
@@ -43,9 +45,15 @@ function ActivitySurveyForm() {
     };
 
     const handleFilter = async () => {
+        setError(null);
+        setNoMatchesError('');
         const filteredData = await fetchFilteredActivities(participants, environment, category);
         if (filteredData !== null) {
-            setFilteredActivities(filteredData);
+            if (filteredData.length === 0 ) {
+                setNoMatchesError('No recommendations were found!');
+            } else {
+                setFilteredActivities(filteredData);
+            }
         }
     };
 
@@ -145,6 +153,25 @@ function ActivitySurveyForm() {
                     </div >
                 </div >
             </div >
+            <div className="justify-center">
+                <div className="text-center text-xl">
+                    {error && (
+                        <div className="error-card">
+                            {error}
+                        </div>
+                    )}
+                    {noMatchesError && (
+                        <div className="no-matches-card">
+                            {noMatchesError}
+                            <div className="pt-6">
+                                <Link to="/activities/create">
+                                    <button className="btn btn-outline btn-secondary">Create one</button>
+                                </Link>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
     );
 };
