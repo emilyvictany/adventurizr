@@ -35,7 +35,6 @@ const LoginForm = () => {
     };
 
     return (
-
         <div className="w-screen">
             <div className="min-h-screen flex">
                 <div className="flex-1 ... bg-lightorange">

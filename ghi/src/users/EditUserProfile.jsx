@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import useUser from "../hooks/useUser";
 import { Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
-import ErrorPage from "../other/ErrorPage";
+import LoginError from "../other/ErrorPage";
 
 function EditUserProfile() {
     const { user, saveUser } = useUser();
@@ -78,7 +78,7 @@ function EditUserProfile() {
     }
 
     if (!user) {
-        return <ErrorPage to="/login_error" />;
+        return <LoginError to="/login_error" />;
     }
 
     return (

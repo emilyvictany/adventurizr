@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../lotties/camping.json";
 import mountains from "../images/mountains.png";
-import ErrorPage from "../other/ErrorPage";
+import LoginError from "../other/ErrorPage";
 
 
 function ActivitySurveyForm() {
@@ -80,7 +80,7 @@ function ActivitySurveyForm() {
     };
 
     if (!user) {
-        return <ErrorPage to="/login_error" />;
+        return <LoginError to="/login_error" />;
     }
 
     return (

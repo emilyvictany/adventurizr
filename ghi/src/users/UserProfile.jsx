@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import DeleteUser from "./DeleteUser";
 import useUser from "../hooks/useUser";
-import ErrorPage from "../other/ErrorPage";
+import LoginError from "../other/ErrorPage";
 
 
 function UserProfile() {
@@ -20,7 +20,7 @@ function UserProfile() {
     }, [user, saveUser]);
 
     if (!user) {
-        return <ErrorPage to="/login_error" />;
+        return <LoginError to="/login_error" />;
     }
 
     return (

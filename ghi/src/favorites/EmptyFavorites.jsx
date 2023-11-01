@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
-import ErrorPage from "../other/ErrorPage";
+import LoginError from "../other/ErrorPage";
 
 function EmptyFavorites() {
     const { user, saveUser } = useUser();
@@ -13,7 +13,7 @@ function EmptyFavorites() {
     }, [user, saveUser]);
 
     if (!user) {
-        return <ErrorPage to="/login_error" />;
+        return <LoginError to="/login_error" />;
     }
 
     return (

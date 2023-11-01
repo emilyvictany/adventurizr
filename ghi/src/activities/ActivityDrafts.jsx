@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import useUser from '../hooks/useUser';
 import useToken from '@galvanize-inc/jwtdown-for-react';
 import { Link, useNavigate } from "react-router-dom";
-import ErrorPage from '../other/ErrorPage';
+import LoginError from '../other/LoginError';
 
 
 const ActivityDraftsPage = () => {
@@ -144,7 +144,7 @@ const ActivityDraftsPage = () => {
     };
 
     if (!user) {
-        return <ErrorPage to="/login_error" />;
+        return <LoginError to="/login_error" />;
     }
 
 
