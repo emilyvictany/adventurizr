@@ -40,6 +40,12 @@ const ActivityDraftsPage = () => {
     }, [user?.id, navigate]);
 
     useEffect(() => {
+        if (!user) {
+            navigate("/login_error");
+        }
+    }, [user, navigate])
+
+    useEffect(() => {
         if (user) {
             getUserDrafts();
         }
@@ -137,8 +143,8 @@ const ActivityDraftsPage = () => {
     };
 
     return (
-        <div className='divspace'>
-            <h1 className="divlargespace text-center text-2xl font-bold">Your Activity Drafts!</h1>
+        <div className="divspace flex flex-col items-center justify-center w-screen">
+            <h1 className="divlargespace text-center text-2xl font-bold">Your Activity Drafts</h1>
 
             <div className="flex justify-center">
                 <div className="card shadow-xl">
@@ -286,7 +292,7 @@ const ActivityDraftsPage = () => {
             <br></br>
             <div className="flex justify-center">
                 <Link to="/activities/create">
-                    <button className="btn btn-outline btn-secondary btn">Create an activity!</button>
+                    <button className="btn btn-outline btn-secondary btn">Create an activity</button>
                 </Link>
             </div>
         </div>

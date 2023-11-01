@@ -1,10 +1,19 @@
-import React from "react"
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom";
+import useUser from "../hooks/useUser";
 
 function EmptyFavorites() {
+    const { user } = useUser();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/login_error");
+        }
+    }, [user, navigate])
 
     return (
-        <div className="divspace">
+        <div className="divspace flex flex-col items-center justify-center w-screen">
             <h1 className="divlargespace text-center text-2xl font-bold">Favorites</h1>
             <div className="flex justify-center">
                 <div className="card w-96 bg-base-100 shadow-xl">
@@ -22,7 +31,7 @@ function EmptyFavorites() {
                 </Link>
             </div>
         </div>
-
     )
 }
+
 export default EmptyFavorites;

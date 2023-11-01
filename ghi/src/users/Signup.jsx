@@ -80,7 +80,7 @@ const SignUpForm = () => {
                                     <label className="block text-sm font-normal leading-6 text-gray-900 indent-3">Email</label>
                                     <div className="flex w-full component-preview p-2 items-left justify-left gap-5 font-sans">
                                         <input
-                                            labelText="Email address"
+                                            labeltext="Email address"
                                             value={email}
                                             onChange={e => setEmail(e.target.value)}
                                             type="email"

@@ -1,10 +1,19 @@
-import React from "react"
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom";
+import useUser from "../hooks/useUser";
 
 function EmptyDrafts() {
+    const { user } = useUser();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/login_error");
+        }
+    }, [user, navigate])
 
     return (
-        <div className="divspace">
+        <div className="divspace flex flex-col items-center justify-center w-screen">
             <h1 className="divlargespace text-center text-2xl font-bold">Your Activity Drafts</h1>
             <div className="flex justify-center">
                 <div className="card w-96 bg-base-100 shadow-xl">
@@ -18,10 +27,11 @@ function EmptyDrafts() {
             <br></br>
             <div className="flex justify-center">
                 <Link to="/activities/create">
-                    <button className="btn btn-outline btn-secondary btn">Create an activity!</button>
+                    <button className="btn btn-outline btn-secondary btn">Create an activity</button>
                 </Link>
             </div>
         </div>
     )
 }
+
 export default EmptyDrafts;
