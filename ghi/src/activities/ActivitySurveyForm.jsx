@@ -51,7 +51,7 @@ function ActivitySurveyForm() {
         setNoMatchesError('');
         const filteredData = await fetchFilteredActivities(participants, environment, category);
         if (filteredData !== null) {
-            if (filteredData.length === 0 ) {
+            if (filteredData.length === 0) {
                 setNoMatchesError('No recommendations were found!');
             } else {
                 setFilteredActivities(filteredData);

@@ -4,6 +4,7 @@ import sleep from "../utils/sleep";
 
 const useUser = () => {
   const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const userObj = JSON.parse(localStorage.getItem("user"));

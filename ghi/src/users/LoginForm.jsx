@@ -13,11 +13,13 @@ const LoginForm = () => {
     const navigate = useNavigate();
     const { saveUser } = useUser()
     const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
+            setLoading(true);
             await login(username, password);
             const user = await saveUser()
 
@@ -31,6 +33,8 @@ const LoginForm = () => {
         } catch (err) {
             console.log('Error while logging in: ', err)
             setError("Error occurred while logging in.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -85,6 +89,11 @@ const LoginForm = () => {
                                         </p>
                                     </div>
 
+                                </div>
+                                <div className="pl-36">
+                                    {isLoading && <span className="loading loading-spinner loading-lg text-secondary"></span>}
+                                    <div className="mb-3">
+                                    </div>
                                 </div>
                             </form>
                         </div>
