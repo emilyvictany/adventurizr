@@ -1,6 +1,6 @@
 from queries.pool import pool
 from pydantic import BaseModel
-from typing import Union, Optional
+from typing import Union, Optional, List
 
 
 class DuplicateAccountError(ValueError):
@@ -157,7 +157,6 @@ class UserQueries:
                         WHERE id= %s
                         """,
                         [
-
                             info.first_name,
                             info.last_name,
                             info.username,
@@ -173,3 +172,31 @@ class UserQueries:
     def user_in_to_out(self, id: int, info: UserIn, hashed_password: str):
         old_data = info.dict()
         return UserOutWithPassword(id=id, **old_data, hashed_password=hashed_password)
+
+    def get_all(self) -> Union[Error, List[UserOut]]:
+        all_users = []
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    SELECT
+                        id,
+                        first_name,
+                        last_name,
+                        username,
+                        email
+                    FROM users
+                    ORDER BY id;
+                    """
+                )
+                users = db.fetchall()
+                for record in users:
+                    user = UserOut(
+                        id=record[0],
+                        first_name=record[1],
+                        last_name=record[2],
+                        username=record[3],
+                        email=record[4],
+                    )
+                    all_users.append(user)
+        return all_users
