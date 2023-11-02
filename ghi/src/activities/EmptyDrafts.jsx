@@ -1,16 +1,20 @@
 import React, { useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
+import LoginError from "../other/LoginError";
 
 function EmptyDrafts() {
-    const { user } = useUser();
-    const navigate = useNavigate();
+    const { user, saveUser } = useUser();
 
     useEffect(() => {
         if (!user) {
-            navigate("/login_error");
+            saveUser();
         }
-    }, [user, navigate])
+    }, [user, saveUser]);
+
+    if (!user) {
+        return <LoginError to="/login_error" />;
+    }
 
     return (
         <div className="divspace flex flex-col items-center justify-center w-screen">
@@ -27,7 +31,7 @@ function EmptyDrafts() {
             <br></br>
             <div className="flex justify-center">
                 <Link to="/activities/create">
-                    <button className="btn btn-outline btn-secondary btn">Create an activity</button>
+                    <button className="btn btn-outline btn-secondary">Create an activity</button>
                 </Link>
             </div>
         </div>

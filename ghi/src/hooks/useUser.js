@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
-import sleep from '../utils/sleep'
+import sleep from "../utils/sleep";
 
 const useUser = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const userObj = JSON.parse(localStorage.getItem("user"));
+    console.log("User from localStorage: ", userObj);
     setUser(userObj);
   }, []);
 
@@ -23,7 +24,7 @@ const useUser = () => {
         localStorage.setItem("user", newUser);
         setUser(data.account);
 
-        return newUser
+        return newUser;
       }
     } catch (err) {
       console.log("Error while saving user: ", err);
@@ -34,4 +35,3 @@ const useUser = () => {
 };
 
 export default useUser;
-

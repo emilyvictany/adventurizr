@@ -2,10 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import DeleteUser from "./DeleteUser";
 import useUser from "../hooks/useUser";
+import LoginError from "../other/LoginError";
 
 
 function UserProfile() {
-    const { user } = useUser()
+    const { user, saveUser } = useUser()
     const navigate = useNavigate();
     function editButton(e) {
         e.preventDefault();
@@ -14,9 +15,13 @@ function UserProfile() {
 
     useEffect(() => {
         if (!user) {
-            navigate("/login_error");
+            saveUser();
         }
-    }, [user, navigate])
+    }, [user, saveUser]);
+
+    if (!user) {
+        return <LoginError to="/login_error" />;
+    }
 
     return (
         <div className="w-screen">
@@ -75,7 +80,6 @@ function UserProfile() {
                             <DeleteUser user={user} />
                         </div>
                     </div>
-
                 </div>
 
             </div>

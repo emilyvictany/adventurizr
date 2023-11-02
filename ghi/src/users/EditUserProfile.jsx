@@ -2,10 +2,10 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState, useEffect } from "react";
 import useUser from "../hooks/useUser";
 import { Typography } from "@material-tailwind/react";
-import { useNavigate } from "react-router-dom";
+import LoginError from "../other/LoginError";
 
 function EditUserProfile() {
-    const { user } = useUser();
+    const { user, saveUser } = useUser();
     const { token } = useToken();
     const [firstName, setFirstName] = useState(user?.first_name || '');
     const [lastName, setLastName] = useState(user?.last_name || '');
@@ -13,13 +13,12 @@ function EditUserProfile() {
     const [email, setEmail] = useState(user?.email || '');
     const [password, setPassword] = useState('');
     const [successMessage, setSuccessMessage] = useState();
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (!user) {
-            navigate("/login_error");
+            saveUser();
         }
-    }, [user, navigate])
+    }, [user, saveUser]);
 
     const handleEdit = async (e) => {
         e.preventDefault();
@@ -52,7 +51,6 @@ function EditUserProfile() {
         }
     }
 
-
     function handleFirstNameChange(e) {
         const { value } = e.target;
         setFirstName(value);
@@ -78,6 +76,9 @@ function EditUserProfile() {
         setPassword(value);
     }
 
+    if (!user) {
+        return <LoginError to="/login_error" />;
+    }
 
     return (
         <div className="w-screen">

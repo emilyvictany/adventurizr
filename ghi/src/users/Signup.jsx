@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import useToken from "@galvanize-inc/jwtdown-for-react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import useUser from '../hooks/useUser'
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../lotties/adventure.json";
@@ -45,9 +45,8 @@ const SignUpForm = () => {
             setError("Error occurred while signing in.");
         } finally {
             setLoading(false);
+        }
     }
-
-}
 
     return (
         <div className="w-screen">
@@ -105,6 +104,16 @@ const SignUpForm = () => {
                                             <input type="submit" className="btn btn-error text-white" value="Register" />
                                         </div>
                                     </div>
+
+                                    <br></br>
+                                    <div>
+                                        <p className="lightblack-txt text-center">Already have an account? Log in
+                                            <Link className="divsmallspace" to="/login">
+                                                <button className="link link-error" >here</button>
+                                            </Link>
+                                        </p>
+                                    </div>
+
                                     {error && (
                                         <div className="alert alert-danger" role="alert">
                                             {error}

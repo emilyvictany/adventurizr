@@ -4,10 +4,11 @@ import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../lotties/paper-airplane.json";
+import LoginError from "../other/LoginError";
 
 
 function CreateActivityForm() {
-    const { user } = useUser();
+    const { user, saveUser } = useUser();
     const { token } = useToken();
     const [title, setTitle] = useState('');
     const [participants, setParticipants] = useState('');
@@ -41,9 +42,9 @@ function CreateActivityForm() {
 
     useEffect(() => {
         if (!user) {
-            navigate("/login_error");
+            saveUser();
         }
-    }, [user, navigate])
+    }, [user, saveUser]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -94,6 +95,10 @@ function CreateActivityForm() {
     const handleCategoryChange = (e) => {
         const value = e.target.value;
         setCategory(value);
+    }
+
+    if (!user) {
+        return <LoginError to="/login_error" />;
     }
 
     return (

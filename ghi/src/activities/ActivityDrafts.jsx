@@ -2,10 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import useUser from '../hooks/useUser';
 import useToken from '@galvanize-inc/jwtdown-for-react';
 import { Link, useNavigate } from "react-router-dom";
+import LoginError from '../other/LoginError';
 
 
 const ActivityDraftsPage = () => {
-    const { user } = useUser();
+    const { user, saveUser } = useUser();
     const { fetchWithToken } = useToken();
     const [activityDrafts, setActivityDrafts] = useState([]);
     const [editActivityId, setEditActivityId] = useState(null);
@@ -41,9 +42,9 @@ const ActivityDraftsPage = () => {
 
     useEffect(() => {
         if (!user) {
-            navigate("/login_error");
+            saveUser();
         }
-    }, [user, navigate])
+    }, [user, saveUser]);
 
     useEffect(() => {
         if (user) {
@@ -141,6 +142,11 @@ const ActivityDraftsPage = () => {
             }
         }
     };
+
+    if (!user) {
+        return <LoginError to="/login_error" />;
+    }
+
 
     return (
         <div className="divspace flex flex-col items-center justify-center w-screen">
