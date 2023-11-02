@@ -4,7 +4,7 @@ import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../lotties/paper-airplane.json";
-import LoginError from "../other/ErrorPage";
+import LoginError from "../other/LoginError";
 
 
 function CreateActivityForm() {

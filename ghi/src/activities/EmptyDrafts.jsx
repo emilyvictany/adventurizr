@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
-import LoginError from "../other/ErrorPage";
+import LoginError from "../other/LoginError";
 
 function EmptyDrafts() {
     const { user, saveUser } = useUser();
@@ -31,7 +31,7 @@ function EmptyDrafts() {
             <br></br>
             <div className="flex justify-center">
                 <Link to="/activities/create">
-                    <button className="btn btn-outline btn-secondary btn">Create an activity</button>
+                    <button className="btn btn-outline btn-secondary">Create an activity</button>
                 </Link>
             </div>
         </div>

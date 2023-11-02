@@ -45,9 +45,8 @@ const SignUpForm = () => {
             setError("Error occurred while signing in.");
         } finally {
             setLoading(false);
+        }
     }
-
-}
 
     return (
         <div className="w-screen">

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Typography } from "@material-tailwind/react";
+
 function LandingPage() {
+
     return (
         <div className="w-screen">
             <div>
@@ -36,4 +38,5 @@ function LandingPage() {
         </div >
     );
 }
+
 export default LandingPage;

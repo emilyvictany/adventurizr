@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../lotties/camping.json";
 import mountains from "../images/mountains.png";
-import LoginError from "../other/ErrorPage";
+import LoginError from "../other/LoginError";
 
 
 function ActivitySurveyForm() {

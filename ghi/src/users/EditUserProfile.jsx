@@ -2,7 +2,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState, useEffect } from "react";
 import useUser from "../hooks/useUser";
 import { Typography } from "@material-tailwind/react";
-import LoginError from "../other/ErrorPage";
+import LoginError from "../other/LoginError";
 
 function EditUserProfile() {
     const { user, saveUser } = useUser();

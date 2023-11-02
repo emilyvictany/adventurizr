@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import DeleteUser from "./DeleteUser";
 import useUser from "../hooks/useUser";
-import LoginError from "../other/ErrorPage";
+import LoginError from "../other/LoginError";
 
 
 function UserProfile() {
@@ -80,7 +80,6 @@ function UserProfile() {
                             <DeleteUser user={user} />
                         </div>
                     </div>
-
                 </div>
 
             </div>

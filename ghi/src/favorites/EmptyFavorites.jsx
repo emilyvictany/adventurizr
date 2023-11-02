@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
-import LoginError from "../other/ErrorPage";
+import LoginError from "../other/LoginError";
 
 function EmptyFavorites() {
     const { user, saveUser } = useUser();
