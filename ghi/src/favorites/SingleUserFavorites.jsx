@@ -3,7 +3,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
-import animationData from "../lotties/picnic-animation.json";
+import newanimationData from "../lotties/hearts.json";
 import LoginError from "../other/LoginError";
 
 function SingleUserFavorites() {
@@ -59,32 +59,63 @@ function SingleUserFavorites() {
 
   return (
     <div className="w-screen">
+      <div className="flex pt-10 flex-row ...">
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div> <h1 className="pt-3 pl-10 pr-10 text-center w-fit text-3xl font-bold">Favorites</h1></div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+        <div className="w-fit login100-pic js-tilt">
+          <Player src={newanimationData} loop autoplay />
+        </div>
+      </div>
       <div>
-        <h1 className="pt-10 pl-10 pr-10text-center text-2xl font-bold">Favorites</h1>
-        <div>
-          <div className="pt-10 pl-10 pr-10 grid grid-rows-3 grid-cols-3 grid-flow-col-row gap-5 w-screen ">
-            {favorites.map(favorite => {
-              return (<div key={favorite.id}>
-                <div className="box-border pb-2 pr-2 bg-lightorange">
-                  <div className="box-border pb-4 pr-2 pl-2 border bg-white shadow-lg shadow-lighorange">
-                    <div className="divsmallspace"></div>
-                    <button className="btn-xs btn-square " onClick={() => handleDeleteButtonClick(favorite.id)}>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                    </button>
-                    <br></br>
-                    <h2 className="pl-3">{favorite.title}</h2>
-                    <br></br>
-                  </div>
+        <div className="pt-10 pl-10 pr-10 grid grid-rows-3 grid-cols-3 grid-flow-col-row gap-5 w-screen ">
+          {favorites.map(favorite => {
+            return (<div key={favorite.id}>
+              <div className="box-border pb-2 pr-2 bg-lightorange">
+                <div className="box-border pb-4 pr-2 pl-2 border bg-white shadow-lg shadow-lighorange">
+                  <div className="divsmallspace"></div>
+                  <button className="btn-xs btn-square " onClick={() => handleDeleteButtonClick(favorite.id)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                  </button>
+                  <br></br>
+                  <h2 className="pl-3">{favorite.title}</h2>
+                  <br></br>
                 </div>
               </div>
-              )
-            })}
-          </div>
-          <div className="pb-10 flex-none">
-            <div className="h-2/5 w-2/5 login150-pic js-tilt">
-              <Player src={animationData} loop autoplay />
             </div>
-          </div>
+            )
+          })}
         </div>
       </div>
     </div>

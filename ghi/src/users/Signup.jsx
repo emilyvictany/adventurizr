@@ -129,8 +129,8 @@ const SignUpForm = () => {
                         </div>
                     </div></div>
                 <div className="flex-1 ..."></div>
-                <div className="flex-none pt-44 pl-40">
-                    <div className="h-1/3 w-1/3 login150-pic js-tilt">
+                <div className="pt-72 pl-30">
+                    <div className="h-fit w-fit login150-pic js-tilt">
                         <Player src={animationData} loop autoplay />
                     </div>
                 </div>

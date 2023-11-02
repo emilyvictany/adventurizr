@@ -4,7 +4,6 @@ import useUser from "../hooks/useUser";
 import { Link } from 'react-router-dom';
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../lotties/camping.json";
-import mountains from "../images/mountains.png";
 import LoginError from "../other/LoginError";
 
 
@@ -86,7 +85,6 @@ function ActivitySurveyForm() {
     return (
         <div className="w-screen">
             <div >
-
                 <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Let's Find an Adventure!</h1>
                 <div className="grid grid-cols-4 gap-5 w-screen h-36 flex-grow rounded-box divcentermidspace">
                     <div>
@@ -131,7 +129,6 @@ function ActivitySurveyForm() {
                 </div >
 
                 <div>
-                    <img src={mountains} className="h-[375px] mb-20" alt="Logo" />
                     <div>
                         <div className=" grid gap-4 grid-cols-3 grid-rows-3 m-11">
                             {filteredActivities.map(activity => {
@@ -155,7 +152,9 @@ function ActivitySurveyForm() {
                                 </div>
                                 )
                             })}
+
                         </div>
+
                     </div >
                 </div >
 
@@ -180,7 +179,7 @@ function ActivitySurveyForm() {
                 </div>
                 <div className="flex-none">
                     {(noMatchesError || filteredActivities.length === 0) && (
-                        <div className="h-1/3 w-1/3 login150-pic js-tilt">
+                        <div className="h-fit w-fit login150-pic js-tilt">
                             <Player src={animationData} loop autoplay />
                         </div>
                     )}

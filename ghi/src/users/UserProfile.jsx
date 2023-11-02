@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import DeleteUser from "./DeleteUser";
 import useUser from "../hooks/useUser";
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from "../lotties/hiker1.json";
 import LoginError from "../other/LoginError";
-
 
 function UserProfile() {
     const { user, saveUser } = useUser()
@@ -28,7 +29,6 @@ function UserProfile() {
             <div className="min-h-screen flex">
                 <div className="w-2/5 justify-start bg-lightorange">
                     <div className="flex-initial w-300">
-                        <h1 className="pt-6 flex justify-center text-3xl">User Profile</h1>
                         <div className="p-8 flex justify-center avatar placeholder">
                             <div className=" text-secondary rounded-full w-20">
                                 <span className="text-2xl">
@@ -37,10 +37,12 @@ function UserProfile() {
                                 </svg>
                             </div>
                         </div>
+
                         <div className="flex justify-center overflow-x-auto h-96 pl-16 pr-16">
                             <table className="table ">
                                 <thead>
                                     <tr>
+                                        <th >First name:</th>
                                         <th >First name:</th>
                                     </tr>
                                 </thead>
@@ -81,7 +83,11 @@ function UserProfile() {
                         </div>
                     </div>
                 </div>
-
+                <div className="grid grid-cols-1 content-center pl-40 pt-8">
+                    <div className=" w-full login150-pic js-tilt">
+                        <Player src={animationData} loop autoplay />
+                    </div>
+                </div>
             </div>
         </div>
     );
