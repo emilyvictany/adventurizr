@@ -47,6 +47,7 @@ function ActivitySurveyForm() {
 
     const handleFilter = async () => {
         setError(null);
+        setFilteredActivities([]);
         setNoMatchesError('');
         const filteredData = await fetchFilteredActivities(participants, environment, category);
         if (filteredData !== null) {

@@ -43,7 +43,6 @@ function UserProfile() {
                                 <thead>
                                     <tr>
                                         <th >First name:</th>
-                                        <th >First name:</th>
                                     </tr>
                                 </thead>
                                 <tbody>
