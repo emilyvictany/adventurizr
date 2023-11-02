@@ -13,6 +13,7 @@ const SignUpForm = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(false);
 
     const { register } = useToken()
     const navigate = useNavigate()
@@ -29,6 +30,7 @@ const SignUpForm = () => {
         }
 
         try {
+            setLoading(true);
             await register(accountData, `${process.env.REACT_APP_API_HOST}/api/users`);
             const user = await saveUser()
             if (user) {
@@ -41,8 +43,11 @@ const SignUpForm = () => {
         } catch (err) {
             console.log('Error while signing in: ', err)
             setError("Error occurred while signing in.");
-        }
+        } finally {
+            setLoading(false);
     }
+
+}
 
     return (
         <div className="w-screen">
@@ -106,6 +111,11 @@ const SignUpForm = () => {
                                         </div>
                                     )}
                                 </div>
+                                <div className="pl-36">
+                                    {isLoading && <span className="loading loading-spinner loading-lg text-secondary"></span>}
+                                    <div className="mb-3">
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div></div>
@@ -120,4 +130,4 @@ const SignUpForm = () => {
     )
 }
 
-export default SignUpForm
+export default SignUpForm;

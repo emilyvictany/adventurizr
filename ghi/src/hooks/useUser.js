@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
-import sleep from '../utils/sleep';
+
+import sleep from '../utils/sleep'
 
 const useUser = () => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (!user) {
-      setUser(null);
-    }
-  }, [user]);
+    const userObj = JSON.parse(localStorage.getItem("user"));
+    setUser(userObj);
+  }, []);
 
   const saveUser = async () => {
     try {
       await sleep(2000);
+
       const response = await fetch(`${process.env.REACT_APP_API_HOST}/token`, {
         credentials: "include",
       });
@@ -21,7 +22,8 @@ const useUser = () => {
         const newUser = JSON.stringify(data.account);
         localStorage.setItem("user", newUser);
         setUser(data.account);
-        return newUser;
+
+        return newUser
       }
     } catch (err) {
       console.log("Error while saving user: ", err);
@@ -32,3 +34,4 @@ const useUser = () => {
 };
 
 export default useUser;
+

@@ -2,17 +2,19 @@ import { React, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import { Typography } from "@material-tailwind/react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 
 function UserHome() {
     const { user } = useUser()
     const navigate = useNavigate();
+    const { token } = useToken();
 
     useEffect(() => {
-        if (!user) {
+        if (!token) {
             navigate("/login_error");
         }
-    }, [user, navigate])
+    }, [token, navigate])
 
     return (
         <div className="w-screen">

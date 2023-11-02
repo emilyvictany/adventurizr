@@ -1,10 +1,13 @@
 import { useState, useCallback, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../hooks/useUser";
-import { Link, useNavigate } from 'react-router-dom';
+// added link instead of useNavigate
+import { Link } from 'react-router-dom';
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../lotties/camping.json";
 import mountains from "../images/mountains.png"
+// added this
+import ErrorPage from "../other/LoginError";
 
 
 function ActivitySurveyForm() {
@@ -15,14 +18,15 @@ function ActivitySurveyForm() {
     const [error, setError] = useState(null);
     const [noMatchesError, setNoMatchesError] = useState('');
     const { token } = useToken()
-    const { user } = useUser()
-    const { navigate } = useNavigate()
+    const { user, saveUser } = useUser()
 
+    // added this
     useEffect(() => {
         if (!user) {
-            navigate("/login_error");
+            saveUser();
         }
-    }, [user, navigate])
+    }, [user, saveUser]);
+
 
     const fetchFilteredActivities = async (participants, environment, category) => {
         try {
@@ -78,6 +82,11 @@ function ActivitySurveyForm() {
             prevActivities.filter((activity) => activity.id !== activityId)
         );
     };
+
+// added this
+    if (!user) {
+        return <ErrorPage to="/login_error"/>;
+    }
 
     return (
         <div className="w-screen">
